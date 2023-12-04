@@ -17,13 +17,13 @@ We add several new medical benchmarks on top:
 
 ## How to use 
 
-- Each individual benchmark has each own sbatch file in `sbatch_scripts`. They can be run with sbatch `sbatch_scripts/task_name.sh <model_name>``, where model name is the name of the model folder in the path `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/`. 
+- Each individual benchmark has each own sbatch file in `sbatch_scripts`. They can be run with sbatch `sbatch_scripts/task_name.sh <model_name>`, where model name is the name of the model folder in the path `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/`. 
 
 - Sbatch files corresponding to OpenLLM Benchmark tasks have the same configuration (num_fewshot) as the leaderboard submissions. 
 
 - Results will be saved to `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/<task_name>` (it can be changed from the sbatch.sh scripts). A new .json file will be created under `<save_path>/<task_name>/<model_name>`  
 
-- To automate the launch of multiple tasks, the script `main_eval.sh <task> <model_name>` can be used. It takes the task and the model name as arguments and it creates a new job for each task. If `<task_name>`` is set to 'all', a new job will be launched for each task defined in the script. Feel free to create new scripts to automate groups of tasks.
+- To automate the launch of multiple tasks, the script `main_eval.sh <tasks> <model_name>` can be used. It takes the task and the model name as arguments and it creates a new job for each task. If `<task_name>` is set to 'all', a new job will be launched for each task defined in the script. Feel free to create new scripts to automate groups of tasks. Multiple tasks can be passed with format `main_eval.sh task1,task2,task3 <model_name>`
 
 - The `format_results.py <model_name>` will create a .csv file with all results for the selected model in `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/``. It will calculate the average score for Open LLM Leaderboard.
 
