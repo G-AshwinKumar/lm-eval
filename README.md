@@ -19,6 +19,8 @@ We add several new medical benchmarks on top:
 
 - Each individual benchmark has each own sbatch file in `sbatch_scripts`. They can be run with sbatch `sbatch_scripts/task_name.sh <model_name>`, where model name is the name of the model folder in the path `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/`. 
 
+- You can run `python model_list.py` to see a list of available models.
+
 - Sbatch files corresponding to OpenLLM Benchmark tasks have the same configuration (num_fewshot) as the leaderboard submissions. 
 
 - Results will be saved to `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/<task_name>` (it can be changed from the sbatch.sh scripts). A new .json file will be created under `<save_path>/<task_name>/<model_name>`  
