@@ -1,0 +1,4 @@
+slurm_output/
+tests/
+# all pycache
+__pycache__/

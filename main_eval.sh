@@ -12,27 +12,33 @@ submit_sbatch() {
 
 # Check if task and model_name arguments are provided
 if [ "$#" -lt 2 ]; then
-    echo "Usage: $0 <task> <model_name> [or 'all']"
+    echo "Usage: $0 <task(s)> <model_name>"
     exit 1
 fi
 
-task=$1
+tasks=$1
 model_name=$2
 
-# Submit sbatch script based on the provided task and model_name
-case $task in
-    "all")
-        for task_name in arc gsm8k mmlu winogrande truthfulqa drop hellaswag; do
-            submit_sbatch "$task_name" "$model_name"
-            echo "Sbatch script for $task_name with model $model_name submitted."
-        done
-        ;;
-    "arc" | "gsm8k" | "mmlu" | "winogrande" | "truthfulqa" | "drop" | "hellaswag")
-        submit_sbatch "$task" "$model_name"
-        echo "Sbatch script for $task with model $model_name submitted."
-        ;;
-    *)
-        echo "Invalid task. Supported tasks: arc, gsm8k, mmlu, winogrande, truthfulqa, drop, hellaswag, all."
-        exit 1
-        ;;
-esac
+# Check if "all" is included in the list of tasks
+if [[ "$tasks" == *"all"* ]]; then
+    for task_name in arc gsm8k mmlu winogrande truthfulqa hellaswag pubmedqa; do
+        submit_sbatch "$task_name" "$model_name"
+        echo "Sbatch script for $task_name with model $model_name submitted."
+    done
+else
+    # Submit sbatch script based on the provided task and model_name
+    IFS=',' read -ra task_array <<< "$tasks"
+
+    for task in "${task_array[@]}"; do
+        case $task in
+            "arc" | "gsm8k" | "mmlu" | "winogrande" | "truthfulqa" | "hellaswag" | "pubmedqa")
+                submit_sbatch "$task" "$model_name"
+                echo "Sbatch script for $task with model $model_name submitted."
+                ;;
+            *)
+                echo "Invalid task: $task. Supported tasks: arc, gsm8k, mmlu, winogrande, truthfulqa, hellaswag, pubmedqa, all."
+                exit 1
+                ;;
+        esac
+    done
+fi

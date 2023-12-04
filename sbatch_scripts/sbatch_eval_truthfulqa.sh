@@ -10,18 +10,20 @@
 #SBATCH -t 06:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=30G        # Memory per node
 
-MODEL_NAME="mistral7b-pmc_llama"
-TASK="truthfulqa_mc1"
+MODEL_NAME=$1
+echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
+MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
+SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/truthfulqa_mc1/$MODEL_NAME.json"
 
 module load singularity/3.9.7
 singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-evaluation-harness:/home/kike/llm-evaluation-harness --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm-eval-harness_11.8_refactor.sif \
     bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/hf_cache" && \
     python -m lm_eval \
     --model hf \
-    --model_args pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/mistral7b-pmc_llama \
+    --model_args pretrained='"$MODEL_PATH"' \
     --tasks truthfulqa_mc1 \
     --device cuda:0 \
     --batch_size auto:4 \
     --max_batch_size 64 \
     --num_fewshot 0 \
-    --output_path /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/truthfulqa_mc1/mistral7b-pmc_llama.json'
+    --output_path "'$SAVE_PATH'"'
