@@ -23,7 +23,7 @@ We add several new medical benchmarks on top:
 
 - Sbatch files corresponding to OpenLLM Benchmark tasks have the same configuration (num_fewshot) as the leaderboard submissions. 
 
-- Results will be saved to `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/<task_name>` (it can be changed from the sbatch.sh scripts). A new .json file will be created under `<save_path>/<task_name>/<model_name>`  
+- Results will be saved to `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/<task_name>` (it can be changed from the sbatch.sh scripts). A new file will be created at `<save_path>/<task_name>/<model_name>.json`  
 
 - To automate the launch of multiple tasks, the script `main_eval.sh <tasks> <model_name>` can be used. It takes the task and the model name as arguments and it creates a new job for each task. If `<task_name>` is set to 'all', a new job will be launched for each task defined in the script. Feel free to create new scripts to automate groups of tasks. Multiple tasks can be passed with format `main_eval.sh task1,task2,task3 <model_name>`
 
