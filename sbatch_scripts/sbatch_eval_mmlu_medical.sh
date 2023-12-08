@@ -25,5 +25,5 @@ singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-ev
     --tasks mmlu_high_school_biology,mmlu_college_biology,mmlu_college_medicine,mmlu_professional_medicine,mmlu_medical_genetics,mmlu_virology,mmlu_clinical_knowledge,mmlu_nutrition,mmlu_anatomy \
     --device cuda:0 \
     --batch_size auto:4 \
-    --num_fewshot 5 \
+    --num_fewshot 2 \
     --output_path "'$SAVE_PATH'"'

@@ -11,17 +11,22 @@ metrics_map = {
     'arc_challenge': 'acc_norm,none',
     'hellaswag': 'acc_norm,none',
     'truthfulqa_mc1': 'acc,none',
+    'truthfulqa_mc2': 'acc,none',
     'mmlu': 'acc,none',
     'winogrande': 'acc,none',
     'gsm8k': 'exact_match,get-answer',
     'drop': 'f1,none',
     'mmlu_medical': 'acc,none',
-    'pubmedqa': 'acc,none'
+    'pubmedqa': 'acc,none',
 }
-
+    # 'pubmedqa': 'acc,none',
+    # 'medmcqa': 'acc,none',
 medical_mmlu_tasks = ["mmlu_high_school_biology", "mmlu_college_biology", "mmlu_college_medicine", 
                     "mmlu_professional_medicine", "mmlu_medical_genetics", "mmlu_virology", 
                     "mmlu_clinical_knowledge", "mmlu_nutrition", "mmlu_anatomy"]
+
+hf_leaderboard_tasks = ['arc_challenge', 'hellaswag', 'truthfulqa_mc2', 'mmlu', 'winogrande', 'gsm8k']
+
 
 
 def get_acc(acc_dict):
@@ -84,17 +89,19 @@ def main():
 
     result_df.insert(3, 'benchmark', result_df.apply(lambda row: row[row['Target_metric']], axis=1))
         
-    hf_leaderboard = (result_df['Task'] == 'mmlu_medical') | (result_df['Task'] == 'pubmedqa')
+    # hf_leaderboard = (result_df['Task'] == 'mmlu_medical') | (result_df['Task'] == 'pubmedqa')
+
+    hf_leaderboard = result_df['Task'].isin(hf_leaderboard_tasks)
 
 
-    mean_benchmark = result_df.loc[~hf_leaderboard, 'benchmark'].mean()
+    mean_benchmark = result_df.loc[hf_leaderboard, 'benchmark'].mean()
 
     result_df = result_df.append({'Task': 'Open LLM', 'Model': args.model, 'Target_metric': 'avg', 'benchmark': mean_benchmark}, ignore_index=True)
 
     # result_df = result_df.append({'Task': 'mean', 'Model': args.model, 'Target_metric': 'avg', 'benchmark': result_df['benchmark'].mean()}, ignore_index=True)
     result_df = result_df.drop(columns=['alias'])
    
-    save_path = os.path.join("../../eval_results", f"{args.model}_results.csv")
+    save_path = os.path.join("../../eval_results", f"{args.model}_results_new.csv")
 
     result_df.to_csv(save_path, index=False)
 

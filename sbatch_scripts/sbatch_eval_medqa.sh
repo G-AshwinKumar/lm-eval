@@ -24,5 +24,5 @@ singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-ev
     --tasks medqa \
     --device cuda:0 \
     --batch_size auto:4 \
-    --num_fewshot 0 \
+    --num_fewshot 2 \
     --output_path "'$SAVE_PATH'"'

@@ -7,10 +7,10 @@
 #SBATCH -e slurm_output/myjob_%j_mmlu.e       # Name of stderr output file(%j expands to jobId)
 #SBATCH --gres=gpu:a100:1   # Request 1 GPU of 2 available on an average A100 node
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 06:00:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 12:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=30G        # Memory per node
 
-MODEL_NAME="meditron-7b"
+MODEL_NAME="Mistral-7B-OpenOrca"
 echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/medqa/$MODEL_NAME.json"
@@ -22,7 +22,7 @@ singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-ev
     python -m lm_eval \
     --model hf \
     --model_args pretrained='"$MODEL_PATH"' \
-    --tasks medqa,medmcqa,pubmedqa  \
+    --tasks mmlu_high_school_biology,mmlu_college_biology,mmlu_college_medicine,mmlu_professional_medicine,mmlu_medical_genetics,mmlu_virology,mmlu_clinical_knowledge,mmlu_nutrition,mmlu_anatomy,medmcqa,medqa,medqa5,pubmedqa \
     --device cuda:0 \
     --batch_size auto:4 \
     --num_fewshot 3 \

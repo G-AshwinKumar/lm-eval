@@ -13,8 +13,13 @@ def process_docs(dataset: datasets.Dataset):
     return dataset.map(_helper) # returns back a datasets.Dataset object
 
 def doc_to_text(doc) -> str:
-    return "Question: {}\nChoices: {}\nAnswer:".format(
-        doc["question"], doc["choices"], doc["choices"][doc["cop"]]
+    instruction = "You are a medical doctor answering real-world medical entrance exam questions. Based " \
+                  "on your understanding of basic and clinical science, medical knowledge, and mechanisms underlying " \
+                  "health, disease, patient care, and modes of therapy, answer the following multiple-choice question. " \
+                  "Select one correct answer from A to D. Base your answer on the current and standard practices " \
+                  "referenced in medical guidelines."
+    return "Instruction: {}\nQuestion: {}\nChoices: {}\nAnswer:".format(
+        instruction, doc["question"], doc["choices"], doc["choices"][doc["cop"]]
     )
 
 def doc_to_choice(doc) -> str:

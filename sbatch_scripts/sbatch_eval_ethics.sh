@@ -7,7 +7,7 @@
 #SBATCH -e slurm_output/myjob_%j_others.e       # Name of stderr output file(%j expands to jobId)
 #SBATCH --gres=gpu:a100:1   # Request 1 GPU of 2 available on an average A100 node
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 09mmlu_medical:00:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 07:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=30G        # Memory per node
 
 # MODEL_NAME="mistral7b-pmc_llama"
@@ -15,7 +15,7 @@
 MODEL_NAME=$1
 echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
-SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/others/$MODEL_NAME.json"
+SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/ethics/$MODEL_NAME.json"
 
 module load singularity/3.9.7
 singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-evaluation-harness:/home/kike/llm-evaluation-harness --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm-eval-harness_11.8_refactor.sif \
@@ -23,7 +23,7 @@ singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-ev
     python -m lm_eval \
     --model hf \
     --model_args pretrained='"$MODEL_PATH"' \
-    --tasks  bbh_flan_fewshot,headqa_en,hendrycks_ethics \
+    --tasks bbh_flan_fewshot,headqa_en,hendrycks_ethics \
     --device cuda:0 \
     --batch_size 2 \
     --num_fewshot 3 \
