@@ -16,6 +16,8 @@ import gc
 import torch
 import transformers
 
+print(transformers.__version__)
+
 from jinja2 import BaseLoader, Environment, StrictUndefined
 from itertools import islice
 

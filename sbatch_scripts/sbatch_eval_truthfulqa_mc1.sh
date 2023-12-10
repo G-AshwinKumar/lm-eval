@@ -13,15 +13,15 @@
 MODEL_NAME=$1
 echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
-SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/truthfulqa_mc2_refactor/$MODEL_NAME.json"
+SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/truthfulqa_mc1/$MODEL_NAME.json"
 
 module load singularity/3.9.7
-singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/code/lm-evaluation-harness:/home/kike/llm-evaluation-harness --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm-eval-harness_11.8_refactor.sif \
+singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-evaluation-harness:/home/kike/llm-evaluation-harness --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm-eval-harness_11.8_refactor.sif \
     bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/hf_cache" && \
     python -m lm_eval \
     --model hf \
     --model_args pretrained='"$MODEL_PATH"' \
-    --tasks truthfulqa_mc2 \
+    --tasks truthfulqa_mc1 \
     --device cuda:0 \
     --batch_size auto:4 \
     --max_batch_size 64 \
