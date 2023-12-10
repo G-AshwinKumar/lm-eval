@@ -27,6 +27,8 @@ We add several new medical benchmarks on top:
 
 - To automate the launch of multiple tasks, the script `main_eval.sh <tasks> <model_name>` can be used. It takes the task and the model name as arguments and it creates a new job for each task. If `<task_name>` is set to 'all', a new job will be launched for each task defined in the script. Feel free to create new scripts to automate groups of tasks. Multiple tasks can be passed with format `main_eval.sh task1,task2,task3 <model_name>`
 
+- There is support for peft models (lora or qlora). The script `main_eval.sh <tasks> <model_name> <peft-model-name>` can be used.
+
 - The `format_results.py <model_name>` will create a .csv file with all results for the selected model in `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/``. It will calculate the average score for Open LLM Leaderboard.
 
 
