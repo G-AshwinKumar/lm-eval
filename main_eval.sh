@@ -40,7 +40,7 @@ peft=$3
 
 # Check if "all" is included in the list of tasks
 if [[ "$tasks" == *"all"* ]]; then
-    for task_name in arc gsm8k mmlu winogrande truthfulqa hellaswag pubmedqa medqa medqa5 medmcqa mmlu_medical ethics; do
+    for task_name in arc gsm8k mmlu winogrande truthfulqa hellaswag pubmedqa medqa medqa5 medmcqa medmcqa_val mmlu_medical ethics; do
         submit_sbatch "$task_name" "$model_name" "$peft"
         echo "Sbatch script for $task_name with model $model_name and peft $peft submitted."
     done
@@ -50,12 +50,12 @@ else
 
     for task in "${task_array[@]}"; do
         case $task in
-            "arc" | "gsm8k" | "mmlu" | "winogrande" | "truthfulqa" | "hellaswag" | "pubmedqa" | "medqa" | "medqa5" | "medmcqa" | "mmlu_medical" | "ethics")
+            "arc" | "gsm8k" | "mmlu" | "winogrande" | "truthfulqa" | "hellaswag" | "pubmedqa" | "medqa" | "medqa5" | "medmcqa" | "medmcqa_val" | "mmlu_medical" | "ethics")
                 submit_sbatch "$task" "$model_name" "$peft"
                 echo "Sbatch script for $task with model $model_name peft $peft submitted."
                 ;;
             *)
-                echo "Invalid task: $task. Supported tasks: arc, gsm8k, mmlu, winogrande, truthfulqa, hellaswag, pubmedqa, medmcqa, medqa, medqa5, mmlu_medical,ethics, all."
+                echo "Invalid task: $task. Supported tasks: arc, gsm8k, mmlu, winogrande, truthfulqa, hellaswag, pubmedqa, medmcqa, medmcqa_val, medqa, medqa5, mmlu_medical,ethics, all."
                 exit 1
                 ;;
         esac

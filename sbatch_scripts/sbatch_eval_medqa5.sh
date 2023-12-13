@@ -25,7 +25,7 @@ if [ -n "$PEFT" ]; then
     python -m lm_eval \
     --model hf \
     --model_args pretrained='"$MODEL_PATH"',peft='"$PEFT_PATH"' \
-    --tasks medqa \
+    --tasks medqa5 \
     --device cuda:0 \
     --batch_size auto:4 \
     --num_fewshot 3 \
@@ -38,7 +38,7 @@ else
     python -m lm_eval \
     --model hf \
     --model_args pretrained='"$MODEL_PATH"' \
-    --tasks medqa \
+    --tasks medqa5 \
     --device cuda:0 \
     --batch_size auto:4 \
     --num_fewshot 3 \
