@@ -1,8 +1,8 @@
 group:
   - medical
-task: medqa5
+task: medqa
 dataset_path: bigbio/med_qa
-dataset_name: med_qa_en_bigbio_qa
+dataset_name: med_qa_en_4options_bigbio_qa
 output_type: multiple_choice
 training_split: train
 validation_split: validation

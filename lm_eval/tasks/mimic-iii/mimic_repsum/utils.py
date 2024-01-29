@@ -1,19 +1,28 @@
+import datasets as datasets
 #from rouge import Rouge
 import sacrebleu
 from collections.abc import Iterable
 
 from rouge_score import rouge_scorer, scoring
 
+
+def process_docs(dataset: datasets.Dataset):
+    def _helper(doc):
+      # modifies the contents of a single
+      # document in our dataset.
+      doc["text"] = doc["text"]
+      # doc["answer"] = "Answer here"
+      return doc
+
+    return dataset.map(_helper)  # returns back a datasets.Dataset object
+
 def doc_to_text(doc) -> str:
-    """
-    instructions = "Instructions: You are a helpful radiology assistant. The following are questions about radiology " \
-                   "reports. Summarize the findings in the report into diagnostic statements. \n" \
-                   "Given the findings: {}. Q: Summarize the findings.".format(doc["text"])
-    """
-    return doc["extractive_notes_summ"]
+    return "Summarize the following report: \n {}".format(
+        doc["text"]
+    )
 
 def doc_to_target(doc) -> str:
-    return doc["target_text"]
+    return doc["answer"]
 
 def is_non_str_iterable(obj):
     return isinstance(obj, Iterable) and not isinstance(obj, str)
@@ -48,15 +57,13 @@ def _sacreformat(refs, preds):
 
 def process_results_gen(doc, results):
 
-    rouge_scores = rouge([doc["target_text"]], [results[0]])
+    rouge_scores = rouge(doc["text"], results[0])
 
-    bleu_scores = bleu([doc["target_text"]], [results[0]])
+    bleu_scores = bleu(doc["text"], results[0])
 
     return {
         "bleu": bleu_scores,
-        "rougeL": rouge_scores["rougeLsum"],
-        "rouge1": rouge_scores["rouge1"],
-        "rouge2": rouge_scores["rouge2"],
+        "rougeL": rouge_scores["rougeLsum"]
     }
 
 
@@ -70,11 +77,6 @@ def bleu(refs, preds):
     :param preds:
         A `list` of predicted `str`s.
     """
-    if len(refs) == 0 or len(preds) == 0:
-        return 0
-
-    refs, preds = _sacreformat(refs, preds)
-
     score = sacrebleu.corpus_bleu(
         preds,
         refs,
@@ -97,23 +99,11 @@ def rouge(refs, preds):
         A `list` of reference `strs`.
     :param preds:
         A `list` of predicted `strs`.
-    output:
-        rouge1: Overlap of unigrams (single words) between the predicted and reference text.
-        rouge2: Overlap of bigrams (pairs of consecutive words).
-        rougeLsum: Measures the longest common subsequence between the predicted and reference text. It considers the recall of overlapping word sequences.
-    """    
-    
+    """
     rouge_types = ["rouge1", "rouge2", "rougeLsum"]
-    if len(refs) == 0 and len(preds) == 0:
-        return {type: 1 for type in rouge_types}
-    elif len(refs) == 0 and len(preds) != 0:
-        return {type: 0 for type in rouge_types}
-    elif len(refs) !=0 and len(preds) == 0:
-        return {type: 0 for type in rouge_types}
-
     scorer = rouge_scorer.RougeScorer(rouge_types)
-
     # Add newlines between sentences to correctly compute `rougeLsum`.
+
     def _prepare_summary(summary):
         summary = summary.replace(" . ", ".\n")
         return summary
@@ -125,4 +115,4 @@ def rouge(refs, preds):
         pred = _prepare_summary(pred)
         aggregator.add_scores(scorer.score(ref, pred))
     result = aggregator.aggregate()
-    return {type: result[type].mid.fmeasure for type in rouge_types}
+    return {type: result[type].mid.fmeasure * 100 for type in rouge_types}

@@ -1,4 +1,7 @@
 env
+slurm_output_kike/
+slurm_output*
+
 *.pyc
 output/
 data/
