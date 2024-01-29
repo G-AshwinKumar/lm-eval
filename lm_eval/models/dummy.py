@@ -1,4 +1,5 @@
 import random
+
 from lm_eval.api.model import LM
 from lm_eval.api.registry import register_model
 
@@ -23,13 +24,9 @@ class DummyLM(LM):
     def generate_until(self, requests):
         res = []
 
-        """
         for ctx, _ in requests:
             res.append("lol")
             assert ctx.strip() != ""
-        """
-        for ctx in requests: 
-            res.append("lol")
 
         return res
 

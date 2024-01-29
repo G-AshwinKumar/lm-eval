@@ -1,5 +1,5 @@
 task: toxigen
-dataset_path: /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/evaluation_datasets/toxigen-data
+dataset_path: skg/toxigen-data
 dataset_name: annotated
 output_type: multiple_choice
 training_split: train
@@ -14,3 +14,5 @@ metric_list:
   - metric: acc_norm
     aggregation: mean
     higher_is_better: true
+metadata:
+  version: 1.0
