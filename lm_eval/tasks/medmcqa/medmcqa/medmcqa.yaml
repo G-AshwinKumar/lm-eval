@@ -1,6 +1,6 @@
 group:
   - medical
-task: medmcqa
+task: medmcqa_test
 dataset_path: medmcqa
 dataset_name: None
 output_type: multiple_choice
