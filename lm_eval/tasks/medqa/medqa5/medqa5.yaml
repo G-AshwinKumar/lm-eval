@@ -1,0 +1,19 @@
+group:
+  - medical
+task: medqa5
+dataset_path: bigbio/med_qa
+dataset_name: med_qa_en_bigbio_qa
+output_type: multiple_choice
+training_split: train
+validation_split: validation
+test_split: test
+process_docs: !function utils.process_docs
+doc_to_text: !function utils.doc_to_text
+doc_to_choice: !function utils.doc_to_choice
+doc_to_target: !function utils.doc_to_target
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  - version: 1.0
