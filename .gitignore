@@ -16,3 +16,6 @@ temp
 # IPython
 profile_default/
 ipython_config.py
+# out
+slurm_output/
+slurm_output_kike/
