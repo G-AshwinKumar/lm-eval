@@ -10,20 +10,38 @@
 #SBATCH -t 12:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=30G        # Memory per node
 
-MODEL_NAME="Mistral-7B-OpenOrca"
+MODEL_NAME="mistral7b-full_v1"
+PEFT="mistral7b-full_v1_dpo_2"
+SAVE_FOLDER="all_med"
 echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
-SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/medqa/$MODEL_NAME.json"
-
+SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/$SAVE_FOLDER/$MODEL_NAME.json"
+PEFT_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$PEFT"
 
 module load singularity/3.9.7
-singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-evaluation-harness:/home/kike/llm-evaluation-harness --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm_eval_harness_refactor_mimic.sif \
-    bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/hf_cache" && \
-    python -m lm_eval \
-    --model hf \
-    --model_args pretrained='"$MODEL_PATH"' \
-    --tasks mmlu_high_school_biology,mmlu_college_biology,mmlu_college_medicine,mmlu_professional_medicine,mmlu_medical_genetics,mmlu_virology,mmlu_clinical_knowledge,mmlu_nutrition,mmlu_anatomy,medmcqa,medqa,medqa5,pubmedqa \
-    --device cuda:0 \
-    --batch_size auto:4 \
-    --num_fewshot 3 \
-    --output_path "'$SAVE_PATH'"'
+if [ -n "$PEFT" ]; then
+    SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/$SAVE_FOLDER/${MODEL_NAME}_${PEFT}.json"
+    # If PEFT exists, pass it to Singularity
+    singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-evaluation-harness:/home/kike/llm-evaluation-harness --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm-eval-harness_11.8_refactor.sif \
+        bash -c 'pip install -U transformers==4.35.2 && export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/hf_cache" && \
+        python -m lm_eval \
+        --model hf \
+        --model_args pretrained='"$MODEL_PATH"',peft='"$PEFT_PATH"' \
+        --tasks medmcqa_template,medmcqa_val_template,medqa_template,medqa5_template,pubmedqa_template \
+        --device cuda:0 \
+        --batch_size auto:4 \
+        --num_fewshot 3 \
+        --output_path "'$SAVE_PATH'"'
+else
+    SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/$SAVE_FOLDER/${MODEL_NAME}.json"
+    singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-evaluation-harness:/home/kike/llm-evaluation-harness --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm-eval-harness_11.8_refactor.sif \
+        bash -c 'pip install -U transformers==4.35.2 && export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/hf_cache" && \
+        python -m lm_eval \
+        --model hf \
+        --model_args pretrained='"$MODEL_PATH"' \
+        --tasks medmcqa_template,medmcqa_val_template,medqa_template,medqa5_template,pubmedqa_template \
+        --device cuda:0 \
+        --batch_size auto:4 \
+        --num_fewshot 3 \
+        --output_path "'$SAVE_PATH'"'
+fi

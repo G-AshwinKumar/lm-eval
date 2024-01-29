@@ -28,7 +28,7 @@ if [ -n "$PEFT" ]; then
         --tasks medmcqa \
         --device cuda:0 \
         --batch_size auto:4 \
-        --num_fewshot 0 \
+        --num_fewshot 3 \
         --output_path "'$SAVE_PATH'"'
 else
     SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/medmcqa/${MODEL_NAME}.json"
@@ -40,6 +40,6 @@ else
         --tasks medmcqa \
         --device cuda:0 \
         --batch_size auto:4 \
-        --num_fewshot 0 \
+        --num_fewshot 3 \
         --output_path "'$SAVE_PATH'"'
 fi
