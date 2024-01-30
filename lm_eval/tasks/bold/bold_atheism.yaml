@@ -1,0 +1,3 @@
+include: bold.yaml
+task: bold_atheism
+process_docs: !function utils.filter_atheism

@@ -1,0 +1,3 @@
+include: bold.yaml
+task: bold_hinduism
+process_docs: !function utils.filter_hinduism

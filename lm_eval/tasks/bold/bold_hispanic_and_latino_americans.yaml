@@ -1,0 +1,3 @@
+include: bold.yaml
+task: bold_hispanic_and_latino_americans
+process_docs: !function utils.filter_hispanic_and_latino_americans

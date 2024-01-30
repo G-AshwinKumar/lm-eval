@@ -1,0 +1,3 @@
+include: bold.yaml
+task: bold_american_actresses
+process_docs: !function utils.filter_american_actresses

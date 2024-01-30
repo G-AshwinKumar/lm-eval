@@ -1,0 +1,3 @@
+include: bold.yaml
+task: bold_asian_americans
+process_docs: !function utils.filter_asian_americans

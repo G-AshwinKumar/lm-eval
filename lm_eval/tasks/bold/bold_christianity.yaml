@@ -1,0 +1,3 @@
+include: bold.yaml
+task: bold_christianity
+process_docs: !function utils.filter_christianity
