@@ -23,8 +23,11 @@ class DummyLM(LM):
 
     def generate_until(self, requests):
         res = []
+        print(type(requests[0]))
+        print(type(str(requests[0])))
 
-        for ctx, _ in requests:
+        for ctx in requests:
+            ctx = str(ctx)
             res.append("lol")
             assert ctx.strip() != ""
 
