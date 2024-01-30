@@ -2,7 +2,6 @@ group:
   - medical
 task: medmcqa_test
 dataset_path: medmcqa
-dataset_name: None
 output_type: multiple_choice
 training_split: train
 validation_split: validation
