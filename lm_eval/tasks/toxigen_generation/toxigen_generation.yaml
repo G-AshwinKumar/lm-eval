@@ -1,0 +1,19 @@
+task: toxigen_generation
+dataset_path: skg/toxigen-data
+dataset_name: annotations
+output_type: generate_until
+training_split: train
+test_split: train
+doc_to_text: !function utils.doc_to_text
+process_results: !function utils.process_results
+metric_list:
+  - metric: toxicity
+    aggregation: mean
+    higher_is_better: false
+generation_kwargs:
+  until:
+    - "\n-"
+  do_sample: false
+  temperature: 0.0
+metadata:
+  - version: 0.0
