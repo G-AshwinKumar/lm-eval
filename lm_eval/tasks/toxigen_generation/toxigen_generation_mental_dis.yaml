@@ -1,4 +1,4 @@
 include: toxigen_generation.yaml
-task: toxigen_generation_asian
+task: toxigen_generation_mental_dis
 dataset_name: annotated
-process_docs: !function utils.filter_asian
+process_docs: !function utils.filter_mental_dis

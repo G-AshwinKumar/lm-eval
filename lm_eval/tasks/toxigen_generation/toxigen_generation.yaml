@@ -1,10 +1,13 @@
 task: toxigen_generation
-dataset_path: skg/toxigen-data
-dataset_name: annotations
+dataset_path: json
+dataset_name: null
+dataset_kwargs:
+  data_files: /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/annotated_train_filtered.json
 output_type: generate_until
 training_split: train
 test_split: train
 doc_to_text: !function utils.doc_to_text
+doc_to_target: ""
 process_results: !function utils.process_results
 metric_list:
   - metric: toxicity
@@ -12,7 +15,7 @@ metric_list:
     higher_is_better: false
 generation_kwargs:
   until:
-    - "\n-"
+    - "\n"
   do_sample: false
   temperature: 0.0
 metadata:

@@ -1,4 +1,4 @@
 include: toxigen_generation.yaml
 task: toxigen_generation_black
-dataset_name: annotations
+dataset_name: annotated
 process_docs: !function utils.filter_black
