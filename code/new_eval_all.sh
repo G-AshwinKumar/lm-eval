@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:a100:1   # Request 2 GPU of 2 available on an average A100 node
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 07:00:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 00:30:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=120G          # Memory per node
 
 if [ -z "$MODEL_NAME" ]; then
