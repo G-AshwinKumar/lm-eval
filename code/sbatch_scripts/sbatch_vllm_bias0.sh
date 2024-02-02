@@ -16,6 +16,8 @@ if [ -z "$MODEL_NAME" ]; then
     exit 1
 fi
 
+MODEL_NAME="openchat_3.5"
+
 echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 SAVE_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/eval_all/$MODEL_NAME-$1-0_shot.json"
