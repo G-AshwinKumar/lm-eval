@@ -11,11 +11,6 @@
 #SBATCH -t 03:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=120G          # Memory per node
 
-if [ -z "$MODEL_NAME" ]; then
-    echo "Error: MODEL_NAME is not set."
-    exit 1
-fi
-
 MODEL_NAME="openchat_3.5"
 
 echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
