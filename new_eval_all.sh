@@ -11,7 +11,11 @@
 #SBATCH -t 00:06:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
+<<<<<<< HEAD
 MODEL_NAME="meditron-7B"
+=======
+MODEL_NAME="meditron-7b"
+>>>>>>> ffb5f83... LAUNCH_CESGA <sbatch new_eval_all.sh> test meditron
 
 echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
