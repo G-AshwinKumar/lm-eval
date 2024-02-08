@@ -12,7 +12,6 @@
 #SBATCH --mem=247G          # Memory per node
 
 MODEL_NAME="meditron-7b"
-
 echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 
