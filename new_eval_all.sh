@@ -11,18 +11,14 @@
 #SBATCH -t 00:06:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
-<<<<<<< HEAD
-MODEL_NAME="meditron-7B"
-=======
 MODEL_NAME="meditron-7b"
->>>>>>> ffb5f83... LAUNCH_CESGA <sbatch new_eval_all.sh> test meditron
 
 echo "Starting sbatch script myjob_arc.sh at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 
 module load singularity/3.9.7
 singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-evaluation-harness:/home/kike/llm-evaluation-harness --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm_eval_harness_vllm_cuda118_bias.sif \
-    bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/hf_cache_'${USER}'" && \
+    bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/hf_cache_'${User}'" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.9 \
