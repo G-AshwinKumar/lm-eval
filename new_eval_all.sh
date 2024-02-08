@@ -5,7 +5,7 @@
 #SBATCH -J myjob            # Job name
 #SBATCH -o slurm_output/new_eval_all.o       # Name of stdout output file(%j expands to jobId)
 #SBATCH -e slurm_output/new_eval_all.e       # Name of stderr output file(%j expands to jobId)
-#SBATCH --gres=gpu:a100:1   # Request 2 GPU of 2 available on an average A100 node
+#SBATCH --gres=gpu:a100:1   # Request 1 GPU of 2 available on an average A100 node
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
 #SBATCH -t 00:06:00         # Run time (hh:mm:ss) - 30 min
