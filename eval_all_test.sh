@@ -21,7 +21,7 @@ singularity exec -B /mnt -B /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/lm-ev
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.9 \
-    --tasks medmcqa,truthfulqa_mc2,crows_pairs,hendrycks_ethics \
+    --tasks list \
     --device cuda:0 \
     --batch_size auto:4 \
     --num_fewshot 0'
