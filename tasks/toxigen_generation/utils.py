@@ -1,8 +1,32 @@
 import numpy as np
 import datasets
-#from transformers import AutoModelForSequenceClassification
-#from transformers import pipeline
-from toxigen.pretrained_classifiers import ToxDectRoBERTa
+from transformers import AutoModelForSequenceClassification
+from transformers import pipeline
+
+
+class HateSpeechClassifier():
+    def __init__(self):
+        super(HateSpeechClassifier, self).__init__()
+
+    def __call__(self, input_ids, labels=None):
+        outputs = self.model(input_ids)
+        return outputs
+
+    def from_text(self, text):
+        input_ids = self.tokenizer(text, return_tensors="pt")["input_ids"]
+        logits = self.__call__(input_ids).logits
+        return 100*float(torch.softmax(logits, dim=1)[:, 1].detach().numpy())
+
+
+class ToxDectRoBERTa(HateSpeechClassifier):
+    def __init__(self):
+        """
+        ToxDectRoBERTa files: https://huggingface.co/Xuhui/ToxDect-roberta-large
+        """
+        super(ToxDectRoBERTa, self).__init__()
+        self.tokenizer = AutoTokenizer.from_pretrained('Xuhui/ToxDect-roberta-large')
+        self.model = AutoModelForSequenceClassification.from_pretrained('Xuhui/ToxDect-roberta-large').eval()
+
 
 def doc_to_text(doc) -> str:
     return "{}".format(doc["text"])
