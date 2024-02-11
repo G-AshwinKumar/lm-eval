@@ -1,10 +1,14 @@
 # lm-evaluation-harness
 
 ## Overview
-This repo loads EleutherAI/lm-evaluation-harness for llm evaluation, together with the tasks under.
+This repo loads EleutherAI/lm-evaluation-harness for llm evaluation, together with the tasks under. Sample scripts are provided in examples/ folder
+
+## Access:
+
+If this is the first time you are using this repo, you need to follow instructions in the following link to get access: https://gitlab.hpai.bsc.es/heka/heka_hub/-/wikis/MLOps-Heka
+
 
 ## Usage
-
 
 ### Prepare Script:
 
@@ -13,6 +17,7 @@ Define the model you want to launch:
 ```
 MODEL_NAME="openchat-3.5"
 ```
+This model needs to present at the path `/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME`
 
 Specify the tasks you want to run 
 
@@ -20,31 +25,28 @@ Specify the tasks you want to run
     --tasks bold_american_actresses,bold_asian_americans,bold_buddhism...
 ```
 
-If you want multigpu, your script should look like this:
+If you want to use both gpus in the node, you need to make sure the following parameters are set correctly:
 
 ```
-#!/bin/bash
-#------------------------------------------------------
-# Example SLURM job script with SBATCH requesting GPUs
-#------------------------------------------------------
-#SBATCH -J myjob            # Job name
-#SBATCH -o slurm_output/new_eval_all.o       # Name of stdout output file(%j expands to jobId)
-#SBATCH -e slurm_output/new_eval_all.e       # Name of stderr output file(%j expands to jobId)
 #SBATCH --gres=gpu:a100:2   # Request 2 GPU of 2 available on an average A100 node
-#SBATCH --exclusive         # No other jobs allowed in our gpu
-#SBATCH -c 64               # Cores per task requested
+#SBATCH -c 64               # 64/64 Cores per task requested
+#SBATCH --mem=247G          # Max memory per node
 
-...
-
-    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=2,...
+--model_args pretrained='${MODEL_PATH}',tensor_parallel_size=2,...
 ```
+If you want to use only one gpu in the node, your script should look like this:
+```
+#SBATCH --gres=gpu:a100:1   # Request 1 GPU of 2 available on an average A100 node
+#SBATCH -c 32               # Cores per task requested
+#SBATCH --mem=120G          # Memory per node
 
-### git commit
+--model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,...
+```
+### Git commit
 
 ```
 git commit -m "LAUNCH_CESGA <sbatch your_script.sh> Whatever message."
 ```
-
 
 ## Output
 

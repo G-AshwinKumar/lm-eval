@@ -7,9 +7,9 @@
 #SBATCH -e slurm_output/err.txt # Name of stderr output file(%j expands to jobId)
 #SBATCH --gres=gpu:a100:1   # Request 1 GPU of 2 available on an average A100 node
 #SBATCH --exclusive         # No other jobs allowed in our gpu
-#SBATCH -c 32               # Cores per task requested
-#SBATCH -t 06:00:00         # Run time (hh:mm:ss)
-#SBATCH --mem=247G          # Memory per node
+#SBATCH -c 32               # 32/64 Cores per task requested Do not increase for single GPU runs
+#SBATCH -t 06:00:00         # Run time (hh:mm:ss) Set to 6 hours as its the maximum in the short queue. Can be increased to 24 hours in the long queue
+#SBATCH --mem=120G          # Memory per node Do not increase for single GPU runs
 
 MODEL_NAME="meditron-7b"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
