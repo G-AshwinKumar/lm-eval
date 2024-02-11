@@ -9,7 +9,7 @@
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
 #SBATCH -t 00:06:00         # Run time (hh:mm:ss) - 30 min
-#SBATCH --mem=247G          # Memory per node
+#SBATCH --mem=120G          # Memory per node
 
 MODEL_NAME="meditron-7b"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
@@ -25,7 +25,7 @@ singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/heka_eval/llm-evaluation-ha
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.9 \
     --tasks truthfulqa_mc2,crows_pairs,hendrycks_ethics,mmlu,medqa_4options,medqa,medqa5,medqa_template,medqa5_template,medmcqa,medmcqa_test,medmcqa_val,medmcqa_template,medmcqa_val_template,pubmedqa \
-    --device cuda:0 \
+    --device cuda \
     --batch_size auto:4 \
     --num_fewshot 5'
 
