@@ -9,7 +9,7 @@
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 64               # Cores per task requested
 #SBATCH -t 06:00:00         # Run time (hh:mm:ss)
-#SBATCH --mem=247G          # Memory per node
+#SBATCH --mem=246G          # Memory per node
 
 MODEL_NAME="Qwen1.5-14B"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
