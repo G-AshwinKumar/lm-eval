@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:a100:1   # Request 1 GPU of 2 available on an average A100 node
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 00:06:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 06:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=120G          # Memory per node
 
 MODEL_NAME="meditron-7b"
@@ -19,7 +19,7 @@ CURRENT_DIR=$(pwd)
 echo "Current directory: '$CURRENT_DIR'"
 
 module load singularity/3.9.7
-singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/heka_eval/llm-evaluation-harness/lm-eval/tasks --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm_eval_harness_vllm_cuda118_bias.sif \
+singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/heka_eval/llm-evaluation-harness/lm-eval/tasks --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm_eval_harness_vllm_cuda118.sif \
     bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/user_caches/hf_cache_'${USER}'" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
