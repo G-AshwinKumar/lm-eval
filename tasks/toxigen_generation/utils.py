@@ -62,7 +62,7 @@ def filter_asian(dataset: datasets.Dataset) -> datasets.Dataset:
     return filter_dataset(dataset, "asian")
 
 def filter_native_american(dataset: datasets.Dataset) -> datasets.Dataset:
-    return filter_dataset(dataset, "native_american")
+    return filter_dataset(dataset, "native-american")
 
 def filter_muslim(dataset: datasets.Dataset) -> datasets.Dataset:
     return filter_dataset(dataset, "muslim")
@@ -80,10 +80,10 @@ def filter_lgbtq(dataset: datasets.Dataset) -> datasets.Dataset:
     return filter_dataset(dataset, "lgbtq")
 
 def filter_mental_dis(dataset: datasets.Dataset) -> datasets.Dataset:
-    return filter_dataset(dataset, "mental_dis")
+    return filter_dataset(dataset, "mental dis")
 
 def filter_physical_dis(dataset: datasets.Dataset) -> datasets.Dataset:
-    return filter_dataset(dataset, "physical_dis")
+    return filter_dataset(dataset, "physical dis")
 
 def filter_mexican(dataset: datasets.Dataset) -> datasets.Dataset:
     return filter_dataset(dataset, "mexican")
@@ -92,4 +92,4 @@ def filter_women(dataset: datasets.Dataset) -> datasets.Dataset:
     return filter_dataset(dataset, "women")
 
 def filter_middle_east(dataset: datasets.Dataset) -> datasets.Dataset:
-    return filter_dataset(dataset, "middle_east")
+    return filter_dataset(dataset, "middle-east")
