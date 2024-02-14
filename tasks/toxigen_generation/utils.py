@@ -1,7 +1,8 @@
-import numpy as np
+# import numpy as np
 import datasets
-from transformers import AutoModelForSequenceClassification
-from transformers import pipeline
+import torch
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+# from transformers import pipeline
 
 
 class HateSpeechClassifier():
