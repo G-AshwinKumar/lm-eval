@@ -27,4 +27,5 @@ singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/heka_eval/llm-evaluation-ha
     --tasks toxigen_generation_asian,toxigen_generation_black,toxigen_generation_chinese,toxigen_generation_jewish,toxigen_generation_latino,toxigen_generation_lgbtq,toxigen_generation_mental_dis,toxigen_generation_mexican,toxigen_generation_muslim,toxigen_generation_physical_dis,toxigen_generation_women,truthfulqa_mc2,crows_pairs,mmlu,medqa_4options,medqa,medqa5,medqa_template,medqa5_template,medmcqa,medmcqa_test,medmcqa_val,medmcqa_template,medmcqa_val_template,pubmedqa \
     --device cuda \
     --batch_size auto:4 \
-    --num_fewshot 0'
+    --num_fewshot 0 && \
+    utils/format_and_append.sh "${COMMIT_TAG}" "${USER}" "${JOB_PID}" "${MODEL_NAME}"'
