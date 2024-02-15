@@ -1,19 +1,26 @@
-import math
 import pandas as pd
+import shutil
 import sys
+from pathlib import Path
+
 
 def read_table(file):
-    table = pd.read_table(file, sep='|', skiprows=[1]).iloc[:, 1:-1]
-    table.columns = table.columns.str.strip()
-    table = table.map(lambda x: x.rstrip() if isinstance(x, str) else x)
-    return table
+    try:
+        table = pd.read_table(file, sep='|', skiprows=[1]).iloc[:, 1:-1]
+        table.columns = table.columns.str.strip()
+        table = table.map(lambda x: x.rstrip() if isinstance(x, str) else x)
+        return table
+    except:
+        print(f"Failed to load {file}")
+        return pd.DataFrame()
 
 
 # Parse the arguments
 new_method = sys.argv[1]
 new_table_path = sys.argv[2]
 
-table = read_table('table.md')
+table_path = '/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/eval_results/evaluation_results.md'
+table = read_table(table_path)
 
 task_dict = {}
 last_task = None
@@ -69,5 +76,8 @@ for task, metrics in task_dict.items():
 if second_table_pos < len(new_table):
     merged = pd.concat([merged, new_table.iloc[second_table_pos:]])
 
-with open('merged_table.md', 'w+') as file:
+# Copy the old table to a new file
+shutil.copy(table_path, Path(table_path).parent / 'old_evaluation_results.md')
+
+with open(table_path, 'w+') as file:
     file.write(merged.to_markdown(index=False).replace('nan', ''))
