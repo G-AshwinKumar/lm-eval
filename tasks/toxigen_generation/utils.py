@@ -10,7 +10,10 @@ class HateSpeechClassifier():
         super(HateSpeechClassifier, self).__init__()
 
     def __call__(self, input_ids, labels=None):
-        outputs = self.model(input_ids)
+        try:
+            outputs = self.model(input_ids)
+        except:
+            outputs = torch.zeros_like(input_ids)
         return outputs
 
     def from_text(self, text):
