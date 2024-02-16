@@ -21,8 +21,8 @@ module load singularity/3.9.7
 singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/heka_eval/llm-evaluation-harness/lm-eval/tasks --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm_eval_harness_vllm_cuda118_new.sif \
     bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/user_caches/hf_cache_'${USER}'" && \
     CUDA_LAUNCH_BLOCKING=1 TORCH_USE_CUDA_DSA=1 python -m lm_eval \
-    --model vllm \
-    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.5 \
+    --model hf \
+    --model_args pretrained='${MODEL_PATH}',trust_remote_code=True \
     --tasks gsm8k \
     --device cuda \
     --batch_size auto:4 \
