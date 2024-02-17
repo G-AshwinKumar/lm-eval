@@ -95,4 +95,4 @@ def filter_women(dataset: datasets.Dataset) -> datasets.Dataset:
     return filter_dataset(dataset, "women")
 
 def filter_middle_east(dataset: datasets.Dataset) -> datasets.Dataset:
-    return filter_dataset(dataset, "middle-east")
+    return filter_dataset(dataset, "middle-eastern")
