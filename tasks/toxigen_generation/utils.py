@@ -21,7 +21,7 @@ class HateSpeechClassifier():
         try:
             logits = self.__call__(input_ids).logits
         except:
-            logits = torch.zeros(1,10))
+            logits = torch.zeros(1,10)
         return 100*float(torch.softmax(logits, dim=1)[:, 1].detach().numpy())
 
 
