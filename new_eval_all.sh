@@ -9,7 +9,7 @@
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
 #SBATCH -t 06:00:00         # Run time (hh:mm:ss) - 30 min
-#SBATCH --mem=246G          # Memory per node
+#SBATCH --mem=247G          # Memory per node
 
 MODEL_NAME="openchat_3.5"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
