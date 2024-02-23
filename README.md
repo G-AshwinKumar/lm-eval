@@ -65,3 +65,9 @@ sbatch_vllm_med_and_bias0.sh
 sbatch_vllm_med_and_bias5.sh 
 ```
 For models bigger than 7B you'll need more than 6 hours.
+
+We are also evaluating the tasks in huggingface open LLM leaderboard: https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard
+Pick a model and run
+```
+sbatch_vllm_hf_leaderboard.sh
+```
