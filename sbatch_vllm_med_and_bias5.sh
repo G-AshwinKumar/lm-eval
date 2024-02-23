@@ -11,7 +11,7 @@
 #SBATCH -t 08:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
-MODEL_NAME="meditron-7b"
+MODEL_NAME="SOLAR-10.7B-v1.0"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 # use pwd
@@ -24,7 +24,7 @@ singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/heka_eval/llm-evaluation-ha
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.85 \
-    --tasks truthfulqa_mc2,crows_pairs,hendrycks_ethics,multimedqa,mmlu,medqa_4options,medqa,medqa5,medqa_template,medqa5_template,medmcqa,medmcqa_val,medmcqa_val_template,pubmedqa \
+    --tasks crows_pairs,hendrycks_ethics,mmlu,medqa_4options,medqa,medqa5,medqa_template,medqa5_template,medmcqa,medmcqa_val,medmcqa_val_template,pubmedqa \
     --device cuda \
     --batch_size auto:4 \
     --num_fewshot 5'
