@@ -55,3 +55,13 @@ Output is saved in CESGA
 ```
 $SHARE/pipelines/lm-evaluation-harness/$COMMIT_TAG
 ```
+
+## LLM-Evaluation
+
+We are evaluating 0-shot and 5-shot for a variety of tasks every model in https://gitlab.hpai.bsc.es/heka/heka_hub/-/issues/68.
+Pick a model in the list and run either
+```
+sbatch_vllm_med_and_bias0.sh
+sbatch_vllm_med_and_bias5.sh 
+```
+For models bigger than 7B you'll need more than 6 hours.
