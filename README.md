@@ -56,6 +56,12 @@ Output is saved in CESGA
 $SHARE/pipelines/lm-evaluation-harness/$COMMIT_TAG
 ```
 
+## Add a new task
+
+Follow the guide in lm-evaluation-harness: https://github.com/EleutherAI/lm-evaluation-harness/blob/main/docs/new_task_guide.md
+
+Then create a new task inside the /tasks folder of this repo. 
+
 ## LLM-Evaluation
 
 We are evaluating 0-shot and 5-shot for a variety of tasks every model in https://gitlab.hpai.bsc.es/heka/heka_hub/-/issues/68.
