@@ -18,7 +18,7 @@ CURRENT_DIR=$(pwd)
 echo "Current directory: '$CURRENT_DIR'"
 
 module load singularity/3.9.7
-singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/heka_eval/llm-evaluation-harness/lm-eval/tasks --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm_eval_harness_vllm_cuda118_new.sif \
+singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/llm-evaluation-harness/lm_eval/tasks --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm_eval_harness_vllm_cuda118_new.sif \
     bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/user_caches/hf_cache_'${USER}'" && \
     CUDA_LAUNCH_BLOCKING=1 TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model hf \
@@ -26,5 +26,4 @@ singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/heka_eval/llm-evaluation-ha
     --tasks gsm8k \
     --device cuda \
     --batch_size auto:4 \
-    --num_fewshot 0 && \
-    utils/format_and_append.sh "${COMMIT_TAG}" "${USER}" "${JOB_PID}" "${MODEL_NAME}"'
+    --num_fewshot 0'
