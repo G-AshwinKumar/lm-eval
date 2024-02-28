@@ -9,7 +9,7 @@
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 64               # Cores per task requested
 #SBATCH -t 10:00:00         # Run time (hh:mm:ss) - 30 min
-#SBATCH --mem=247G          # Memory per node
+#SBATCH --mem=247G          # Memory per node 
 
 MODEL_NAME="CausalLM-14B"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
