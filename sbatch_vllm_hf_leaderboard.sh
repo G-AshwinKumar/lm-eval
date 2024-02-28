@@ -24,28 +24,6 @@ singularity exec -B /mnt -B $CURRENT_DIR/tasks:/home/llm-evaluation-harness/lm_e
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained="${MODEL_PATH}",tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.8 \
-    --tasks truthfulqa_mc2 \
+    --tasks hf_leaderboard \
     --device cuda \
-    --batch_size auto:4 \
-    --num_fewshot 0 && \
-    TORCH_USE_CUDA_DSA=1 python -m lm_eval \
-    --model vllm \
-    --model_args pretrained="${MODEL_PATH}",tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.8 \
-    --tasks mmlu, winogrande, gsm8k \
-    --device cuda \
-    --batch_size auto:4 \
-    --num_fewshot 5 && \
-    TORCH_USE_CUDA_DSA=1 python -m lm_eval \
-    --model vllm \
-    --model_args pretrained="${MODEL_PATH}",tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.8 \
-    --tasks hellaswag \
-    --device cuda \
-    --batch_size auto:4 \
-    --num_fewshot 10 && \
-    TORCH_USE_CUDA_DSA=1 python -m lm_eval \
-    --model vllm \
-    --model_args pretrained="${MODEL_PATH}",tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.8 \
-    --tasks arc_challenge \
-    --device cuda \
-    --batch_size auto:4 \
-    --num_fewshot 25'
+    --batch_size auto:4'

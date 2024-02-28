@@ -1,0 +1,14 @@
+group: hf_leaderboard
+task:
+ - task: truthfulqa_mc2
+   num_fewshot: 0
+ - task: mmlu
+   num_fewshot: 5
+ - task: winogrande
+   num_fewshot: 5
+ - task: gsm8k
+   num_fewshot: 5
+ - task: hellaswag
+   num_fewshot: 10
+ - task: mmlu
+   num_fewshot: 25
