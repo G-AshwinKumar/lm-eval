@@ -18,7 +18,7 @@ CURRENT_DIR=$(pwd)
 echo "Current directory: '$CURRENT_DIR'"
 
 module load singularity/3.9.7
-singularity exec -B /mnt --writable --overlay $CURRENT_DIR/tasks:/home/tasks --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm_eval_harness_vllm_cuda118.sif \
+singularity exec -B /mnt --overlay $CURRENT_DIR/tasks:/home/lm-evaluation-harness/lm_eval/tasks --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Singularity/lm_eval_harness_vllm_cuda118.sif \
     bash -c 'rsync -av --ignore-existing /home/tasks /home/lm-evaluation-harness/lm_eval/tasks && \
     export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/user_caches/hf_cache_'${USER}'" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
