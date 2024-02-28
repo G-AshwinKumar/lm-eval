@@ -23,6 +23,6 @@ singularity exec -B /mnt --overlay $CURRENT_DIR/tasks:/home/lm-evaluation-harnes
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained="${MODEL_PATH}",tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.85 \
-    --tasks hf_leaderboard \
+    --tasks list \
     --device cuda \
     --batch_size auto:4'
