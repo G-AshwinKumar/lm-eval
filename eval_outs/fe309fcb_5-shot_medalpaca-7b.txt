@@ -1,0 +1,148 @@
+slurmstepd: info: Setting TMPDIR to /scratch/5909892. Previous errors about TMPDIR can be discarded
+Starting sbatch script at Tue Feb 20 08:25:29 PM CET 2024 for medalpaca-7b
+Current directory: '/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/pipelines/lm-evaluation-harness/fe309fcb'
+INFO 02-20 20:26:37 llm_engine.py:73] Initializing an LLM engine with config: model='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/medalpaca-7b', tokenizer='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/medalpaca-7b', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, quantization=None, seed=1234)
+MegaBlocks not found. Please install it by `pip install megablocks`.
+STK not found: please see https://github.com/stanford-futuredata/stk
+INFO 02-20 20:28:10 llm_engine.py:222] # GPU blocks: 2619, # CPU blocks: 512
+vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/medalpaca-7b,tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.85), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: auto:4
+|                  Tasks                   |Version|Filter|n-shot|    Metric     |Value |   |Stderr|
+|------------------------------------------|-------|------|-----:|---------------|-----:|---|-----:|
+|truthfulqa_mc2                            |      2|none  |     0|acc            |0.4103|±  |0.0151|
+|pubmedqa                                  |      1|none  |     5|acc            |0.6920|±  |0.0207|
+|mmlu                                      |N/A    |none  |     0|acc            |0.4707|±  |0.0040|
+| - humanities                             |N/A    |none  |     5|acc            |0.4162|±  |0.0069|
+|  - formal_logic                          |      0|none  |     5|acc            |0.2222|±  |0.0372|
+|  - high_school_european_history          |      0|none  |     5|acc            |0.5939|±  |0.0383|
+|  - high_school_us_history                |      0|none  |     5|acc            |0.5931|±  |0.0345|
+|  - high_school_world_history             |      0|none  |     5|acc            |0.6582|±  |0.0309|
+|  - international_law                     |      0|none  |     5|acc            |0.6033|±  |0.0447|
+|  - jurisprudence                         |      0|none  |     5|acc            |0.5370|±  |0.0482|
+|  - logical_fallacies                     |      0|none  |     5|acc            |0.4785|±  |0.0392|
+|  - moral_disputes                        |      0|none  |     5|acc            |0.4884|±  |0.0269|
+|  - moral_scenarios                       |      0|none  |     5|acc            |0.2425|±  |0.0143|
+|  - philosophy                            |      0|none  |     5|acc            |0.5209|±  |0.0284|
+|  - prehistory                            |      0|none  |     5|acc            |0.5216|±  |0.0278|
+|  - professional_law                      |      0|none  |     5|acc            |0.3540|±  |0.0122|
+|  - world_religions                       |      0|none  |     5|acc            |0.5029|±  |0.0383|
+| - other                                  |N/A    |none  |     5|acc            |0.5829|±  |0.0087|
+|  - business_ethics                       |      0|none  |     5|acc            |0.4800|±  |0.0502|
+|  - clinical_knowledge                    |      0|none  |     5|acc            |0.6264|±  |0.0298|
+|  - college_medicine                      |      0|none  |     5|acc            |0.5260|±  |0.0381|
+|  - global_facts                          |      0|none  |     5|acc            |0.3700|±  |0.0485|
+|  - human_aging                           |      0|none  |     5|acc            |0.6413|±  |0.0322|
+|  - management                            |      0|none  |     5|acc            |0.4951|±  |0.0495|
+|  - marketing                             |      0|none  |     5|acc            |0.6838|±  |0.0305|
+|  - medical_genetics                      |      0|none  |     5|acc            |0.6900|±  |0.0465|
+|  - miscellaneous                         |      0|none  |     5|acc            |0.6335|±  |0.0172|
+|  - nutrition                             |      0|none  |     5|acc            |0.6111|±  |0.0279|
+|  - professional_accounting               |      0|none  |     5|acc            |0.3369|±  |0.0282|
+|  - professional_medicine                 |      0|none  |     5|acc            |0.6654|±  |0.0287|
+|  - virology                              |      0|none  |     5|acc            |0.5241|±  |0.0389|
+| - social_sciences                        |N/A    |none  |     5|acc            |0.5382|±  |0.0087|
+|  - econometrics                          |      0|none  |     5|acc            |0.2807|±  |0.0423|
+|  - high_school_geography                 |      0|none  |     5|acc            |0.5404|±  |0.0355|
+|  - high_school_government_and_politics   |      0|none  |     5|acc            |0.6528|±  |0.0344|
+|  - high_school_macroeconomics            |      0|none  |     5|acc            |0.4103|±  |0.0249|
+|  - high_school_microeconomics            |      0|none  |     5|acc            |0.3739|±  |0.0314|
+|  - high_school_psychology                |      0|none  |     5|acc            |0.7156|±  |0.0193|
+|  - human_sexuality                       |      0|none  |     5|acc            |0.5802|±  |0.0433|
+|  - professional_psychology               |      0|none  |     5|acc            |0.5670|±  |0.0200|
+|  - public_relations                      |      0|none  |     5|acc            |0.5364|±  |0.0478|
+|  - security_studies                      |      0|none  |     5|acc            |0.4286|±  |0.0317|
+|  - sociology                             |      0|none  |     5|acc            |0.5124|±  |0.0353|
+|  - us_foreign_policy                     |      0|none  |     5|acc            |0.6200|±  |0.0488|
+| - stem                                   |N/A    |none  |     5|acc            |0.3758|±  |0.0084|
+|  - abstract_algebra                      |      0|none  |     5|acc            |0.3000|±  |0.0461|
+|  - anatomy                               |      0|none  |     5|acc            |0.5259|±  |0.0431|
+|  - astronomy                             |      0|none  |     5|acc            |0.4539|±  |0.0405|
+|  - college_biology                       |      0|none  |     5|acc            |0.5625|±  |0.0415|
+|  - college_chemistry                     |      0|none  |     5|acc            |0.3400|±  |0.0476|
+|  - college_computer_science              |      0|none  |     5|acc            |0.2700|±  |0.0446|
+|  - college_mathematics                   |      0|none  |     5|acc            |0.2500|±  |0.0435|
+|  - college_physics                       |      0|none  |     5|acc            |0.3627|±  |0.0478|
+|  - computer_security                     |      0|none  |     5|acc            |0.5900|±  |0.0494|
+|  - conceptual_physics                    |      0|none  |     5|acc            |0.3915|±  |0.0319|
+|  - electrical_engineering                |      0|none  |     5|acc            |0.3724|±  |0.0403|
+|  - elementary_mathematics                |      0|none  |     5|acc            |0.2593|±  |0.0226|
+|  - high_school_biology                   |      0|none  |     5|acc            |0.5871|±  |0.0280|
+|  - high_school_chemistry                 |      0|none  |     5|acc            |0.4384|±  |0.0349|
+|  - high_school_computer_science          |      0|none  |     5|acc            |0.4000|±  |0.0492|
+|  - high_school_mathematics               |      0|none  |     5|acc            |0.2556|±  |0.0266|
+|  - high_school_physics                   |      0|none  |     5|acc            |0.2848|±  |0.0368|
+|  - high_school_statistics                |      0|none  |     5|acc            |0.2269|±  |0.0286|
+|  - machine_learning                      |      0|none  |     5|acc            |0.3214|±  |0.0443|
+|medqa_template                            |      1|none  |     5|acc            |0.3621|±  |0.0135|
+|medqa_4options                            |Yaml   |none  |     5|acc            |0.4226|±  |0.0139|
+|                                          |       |none  |     5|acc_norm       |0.4226|±  |0.0139|
+|medqa5_template                           |      1|none  |     5|acc            |0.3213|±  |0.0131|
+|medqa5                                    |      1|none  |     5|acc            |0.3197|±  |0.0131|
+|medqa                                     |      1|none  |     5|acc            |0.3684|±  |0.0135|
+|medmcqa_val_template                      |      1|none  |     5|acc            |0.3722|±  |0.0075|
+|medmcqa_val                               |      1|none  |     5|acc            |0.3784|±  |0.0075|
+|medmcqa                                   |Yaml   |none  |     5|acc            |0.3541|±  |0.0074|
+|                                          |       |none  |     5|acc_norm       |0.3541|±  |0.0074|
+|hendrycks_ethics                          |N/A    |none  |     5|acc            |0.6558|±  |0.0033|
+| - ethics_cm                              |      1|none  |     5|acc            |0.6237|±  |0.0078|
+| - ethics_deontology                      |      1|none  |     5|acc            |0.5826|±  |0.0082|
+| - ethics_justice                         |      1|none  |     5|acc            |0.6087|±  |0.0094|
+| - ethics_utilitarianism                  |      1|none  |     5|acc            |0.5668|±  |0.0071|
+| - ethics_virtue                          |      1|none  |     5|acc            |0.8454|±  |0.0051|
+|crows_pairs                               |N/A    |none  |     5|likelihood_diff|4.8525|±  |0.0509|
+|                                          |       |none  |     5|pct_stereotype |0.6872|±  |0.0056|
+| - crows_pairs_english                    |      1|none  |     5|likelihood_diff|5.0089|±  |0.1068|
+|                                          |       |none  |     5|pct_stereotype |0.7168|±  |0.0110|
+| - crows_pairs_english_age                |      1|none  |     5|likelihood_diff|5.7475|±  |0.5140|
+|                                          |       |none  |     5|pct_stereotype |0.8242|±  |0.0401|
+| - crows_pairs_english_autre              |      1|none  |     5|likelihood_diff|9.5395|±  |3.2972|
+|                                          |       |none  |     5|pct_stereotype |0.7273|±  |0.1408|
+| - crows_pairs_english_disability         |      1|none  |     5|likelihood_diff|9.0377|±  |0.6736|
+|                                          |       |none  |     5|pct_stereotype |0.8308|±  |0.0469|
+| - crows_pairs_english_gender             |      1|none  |     5|likelihood_diff|3.9181|±  |0.2368|
+|                                          |       |none  |     5|pct_stereotype |0.7000|±  |0.0257|
+| - crows_pairs_english_nationality        |      1|none  |     5|likelihood_diff|5.0507|±  |0.2923|
+|                                          |       |none  |     5|pct_stereotype |0.6991|±  |0.0313|
+| - crows_pairs_english_physical_appearance|      1|none  |     5|likelihood_diff|6.1347|±  |0.5131|
+|                                          |       |none  |     5|pct_stereotype |0.7778|±  |0.0493|
+| - crows_pairs_english_race_color         |      1|none  |     5|likelihood_diff|4.8994|±  |0.1816|
+|                                          |       |none  |     5|pct_stereotype |0.7283|±  |0.0198|
+| - crows_pairs_english_religion           |      1|none  |     5|likelihood_diff|6.1592|±  |0.4194|
+|                                          |       |none  |     5|pct_stereotype |0.8468|±  |0.0343|
+| - crows_pairs_english_sexual_orientation |      1|none  |     5|likelihood_diff|6.8970|±  |0.5360|
+|                                          |       |none  |     5|pct_stereotype |0.8495|±  |0.0373|
+| - crows_pairs_english_socioeconomic      |      1|none  |     5|likelihood_diff|6.3769|±  |0.3240|
+|                                          |       |none  |     5|pct_stereotype |0.7947|±  |0.0294|
+| - crows_pairs_french                     |      1|none  |     5|likelihood_diff|4.3191|±  |0.0946|
+|                                          |       |none  |     5|pct_stereotype |0.6166|±  |0.0119|
+| - crows_pairs_french_age                 |      1|none  |     5|likelihood_diff|4.5024|±  |0.4272|
+|                                          |       |none  |     5|pct_stereotype |0.8000|±  |0.0424|
+| - crows_pairs_french_autre               |      1|none  |     5|likelihood_diff|6.6506|±  |0.9611|
+|                                          |       |none  |     5|pct_stereotype |0.6154|±  |0.1404|
+| - crows_pairs_french_disability          |      1|none  |     5|likelihood_diff|6.4044|±  |0.6129|
+|                                          |       |none  |     5|pct_stereotype |0.7879|±  |0.0507|
+| - crows_pairs_french_gender              |      1|none  |     5|likelihood_diff|3.8764|±  |0.1964|
+|                                          |       |none  |     5|pct_stereotype |0.6199|±  |0.0271|
+| - crows_pairs_french_nationality         |      1|none  |     5|likelihood_diff|4.2291|±  |0.2377|
+|                                          |       |none  |     5|pct_stereotype |0.4704|±  |0.0314|
+| - crows_pairs_french_physical_appearance |      1|none  |     5|likelihood_diff|5.2044|±  |0.6273|
+|                                          |       |none  |     5|pct_stereotype |0.7500|±  |0.0514|
+| - crows_pairs_french_race_color          |      1|none  |     5|likelihood_diff|4.5630|±  |0.1665|
+|                                          |       |none  |     5|pct_stereotype |0.6478|±  |0.0223|
+| - crows_pairs_french_religion            |      1|none  |     5|likelihood_diff|5.2083|±  |0.4026|
+|                                          |       |none  |     5|pct_stereotype |0.7826|±  |0.0386|
+| - crows_pairs_french_sexual_orientation  |      1|none  |     5|likelihood_diff|5.9426|±  |0.4498|
+|                                          |       |none  |     5|pct_stereotype |0.8571|±  |0.0369|
+| - crows_pairs_french_socioeconomic       |      1|none  |     5|likelihood_diff|5.2952|±  |0.3047|
+|                                          |       |none  |     5|pct_stereotype |0.7245|±  |0.0320|
+
+|      Groups      |Version|Filter|n-shot|    Metric     |Value |   |Stderr|
+|------------------|-------|------|-----:|---------------|-----:|---|-----:|
+|mmlu              |N/A    |none  |     0|acc            |0.4707|±  |0.0040|
+| - humanities     |N/A    |none  |     5|acc            |0.4162|±  |0.0069|
+| - other          |N/A    |none  |     5|acc            |0.5829|±  |0.0087|
+| - social_sciences|N/A    |none  |     5|acc            |0.5382|±  |0.0087|
+| - stem           |N/A    |none  |     5|acc            |0.3758|±  |0.0084|
+|hendrycks_ethics  |N/A    |none  |     5|acc            |0.6558|±  |0.0033|
+|crows_pairs       |N/A    |none  |     5|likelihood_diff|4.8525|±  |0.0509|
+|                  |       |none  |     5|pct_stereotype |0.6872|±  |0.0056|
+
