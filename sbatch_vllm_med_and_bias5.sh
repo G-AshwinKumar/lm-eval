@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:a100:1   # Request 1 or 2 GPU of 2 available on an average A100 node
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 10:00:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 12:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node 
 
 MODEL_NAME="gemma-7b"
@@ -23,7 +23,7 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/user_caches/hf_cache_'${USER}'" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
-    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.75 \
+    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.6 \
     --tasks crows_pairs,hendrycks_ethics,multimedqa,medqa,medqa5,medqa_template,medqa5_template,medmcqa_val,medmcqa_val_template \
     --device cuda \
     --batch_size auto:4 \
