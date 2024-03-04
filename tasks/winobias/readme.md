@@ -48,3 +48,11 @@ N_sr = #(_pro) = 792
 N_sc = #(_anti) = 792.
 
 Thus, we only need to compute the number of correct llm answers to those questions to obtain s.
+
+Running the task winobias outputs 
+
+<center>
+winobias = 1/2 * s 
+</center>
+
+Assuming N_sr=N_sc, because we are computing (C_sr + C_sc)/total).
