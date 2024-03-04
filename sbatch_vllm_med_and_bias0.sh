@@ -6,12 +6,11 @@
 #SBATCH -o slurm_output/out.txt # Name of stdout output file(%j expands to jobId)
 #SBATCH -e slurm_output/err.txt # Name of stderr output file(%j expands to jobId)
 #SBATCH --gres=gpu:a100:1   # Request 1 or 2 GPUs of 2 available on an average A100 node
-#SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
 #SBATCH -t 12:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
-MODEL_NAME="SOLAR-10.7B-Instruct-v1.0"
+MODEL_NAME="internlm2-chat-7b"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 # use pwd
