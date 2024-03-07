@@ -1,0 +1,95 @@
+slurmstepd: info: Setting TMPDIR to /scratch/6138702. Previous errors about TMPDIR can be discarded
+Starting sbatch script at Wed Mar  6 05:24:14 PM CET 2024 for BioMedGPT-LM-7B
+Current directory: '/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/pipelines/lm-evaluation-harness/011fa1d3'
+INFO 03-06 17:25:34 config.py:413] Custom all-reduce kernels are temporarily disabled due to stability issues. We will re-enable them once the issues are resolved.
+INFO 03-06 17:25:37 llm_engine.py:79] Initializing an LLM engine with config: model='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/BioMedGPT-LM-7B', tokenizer='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/BioMedGPT-LM-7B', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=2, disable_custom_all_reduce=True, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, seed=1234)
+INFO 03-06 17:27:16 llm_engine.py:337] # GPU blocks: 4767, # CPU blocks: 1024
+INFO 03-06 17:27:17 model_runner.py:676] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 03-06 17:27:17 model_runner.py:680] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+[36m(RayWorkerVllm pid=94758)[0m INFO 03-06 17:27:17 model_runner.py:676] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+[36m(RayWorkerVllm pid=94758)[0m INFO 03-06 17:27:17 model_runner.py:680] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 03-06 17:27:22 model_runner.py:748] Graph capturing finished in 5 secs.
+[36m(RayWorkerVllm pid=94758)[0m INFO 03-06 17:27:22 model_runner.py:748] Graph capturing finished in 5 secs.
+vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/BioMedGPT-LM-7B,tensor_parallel_size=2,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.65), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: auto:4
+|                  Tasks                   |Version|Filter|n-shot|    Metric     |Value |   |Stderr|
+|------------------------------------------|-------|------|-----:|---------------|-----:|---|-----:|
+|stem                                      |N/A    |none  |     5|acc            |0.4413|±  |0.0058|
+|                                          |       |none  |     5|acc_norm       |0.4010|±  |0.0066|
+| - medmcqa                                |Yaml   |none  |     5|acc            |0.3956|±  |0.0076|
+|                                          |       |none  |     5|acc_norm       |0.3956|±  |0.0076|
+| - medqa_4options                         |Yaml   |none  |     5|acc            |0.4187|±  |0.0138|
+|                                          |       |none  |     5|acc_norm       |0.4187|±  |0.0138|
+| - anatomy (mmlu)                         |      0|none  |     5|acc            |0.5185|±  |0.0432|
+| - clinical_knowledge (mmlu)              |      0|none  |     5|acc            |0.5170|±  |0.0308|
+| - college_biology (mmlu)                 |      0|none  |     5|acc            |0.5000|±  |0.0418|
+| - college_medicine (mmlu)                |      0|none  |     5|acc            |0.4509|±  |0.0379|
+| - medical_genetics (mmlu)                |      0|none  |     5|acc            |0.5000|±  |0.0503|
+| - professional_medicine (mmlu)           |      0|none  |     5|acc            |0.4963|±  |0.0304|
+| - pubmedqa                               |      1|none  |     5|acc            |0.7580|±  |0.0192|
+|medqa_template                            |      1|none  |     5|acc            |0.4124|±  |0.0138|
+|medqa5_template                           |      1|none  |     5|acc            |0.3606|±  |0.0135|
+|medqa5                                    |      1|none  |     5|acc            |0.3606|±  |0.0135|
+|medqa                                     |      1|none  |     5|acc            |0.4226|±  |0.0139|
+|medmcqa_val_template                      |      1|none  |     5|acc            |0.3894|±  |0.0075|
+|medmcqa_val                               |      1|none  |     5|acc            |0.3978|±  |0.0076|
+|hendrycks_ethics                          |N/A    |none  |     5|acc            |0.6468|±  |0.0033|
+| - ethics_cm                              |      1|none  |     5|acc            |0.6211|±  |0.0078|
+| - ethics_deontology                      |      1|none  |     5|acc            |0.5768|±  |0.0082|
+| - ethics_justice                         |      1|none  |     5|acc            |0.6557|±  |0.0091|
+| - ethics_utilitarianism                  |      1|none  |     5|acc            |0.5395|±  |0.0072|
+| - ethics_virtue                          |      1|none  |     5|acc            |0.8163|±  |0.0055|
+|crows_pairs                               |N/A    |none  |     5|likelihood_diff|4.0976|±  |0.0452|
+|                                          |       |none  |     5|pct_stereotype |0.6944|±  |0.0056|
+| - crows_pairs_english                    |      1|none  |     5|likelihood_diff|4.2634|±  |0.0945|
+|                                          |       |none  |     5|pct_stereotype |0.7335|±  |0.0108|
+| - crows_pairs_english_age                |      1|none  |     5|likelihood_diff|4.6397|±  |0.4219|
+|                                          |       |none  |     5|pct_stereotype |0.7912|±  |0.0428|
+| - crows_pairs_english_autre              |      1|none  |     5|likelihood_diff|7.8432|±  |2.9200|
+|                                          |       |none  |     5|pct_stereotype |0.8182|±  |0.1220|
+| - crows_pairs_english_disability         |      1|none  |     5|likelihood_diff|7.6545|±  |0.6223|
+|                                          |       |none  |     5|pct_stereotype |0.8154|±  |0.0485|
+| - crows_pairs_english_gender             |      1|none  |     5|likelihood_diff|3.0489|±  |0.1829|
+|                                          |       |none  |     5|pct_stereotype |0.6937|±  |0.0258|
+| - crows_pairs_english_nationality        |      1|none  |     5|likelihood_diff|4.2171|±  |0.2441|
+|                                          |       |none  |     5|pct_stereotype |0.7130|±  |0.0309|
+| - crows_pairs_english_physical_appearance|      1|none  |     5|likelihood_diff|4.4701|±  |0.4172|
+|                                          |       |none  |     5|pct_stereotype |0.7778|±  |0.0493|
+| - crows_pairs_english_race_color         |      1|none  |     5|likelihood_diff|3.9573|±  |0.1578|
+|                                          |       |none  |     5|pct_stereotype |0.6988|±  |0.0204|
+| - crows_pairs_english_religion           |      1|none  |     5|likelihood_diff|5.1174|±  |0.3754|
+|                                          |       |none  |     5|pct_stereotype |0.8378|±  |0.0351|
+| - crows_pairs_english_sexual_orientation |      1|none  |     5|likelihood_diff|6.6391|±  |0.5186|
+|                                          |       |none  |     5|pct_stereotype |0.8925|±  |0.0323|
+| - crows_pairs_english_socioeconomic      |      1|none  |     5|likelihood_diff|5.4520|±  |0.2545|
+|                                          |       |none  |     5|pct_stereotype |0.7947|±  |0.0294|
+| - crows_pairs_french                     |      1|none  |     5|likelihood_diff|3.6836|±  |0.0881|
+|                                          |       |none  |     5|pct_stereotype |0.6225|±  |0.0118|
+| - crows_pairs_french_age                 |      1|none  |     5|likelihood_diff|4.0871|±  |0.3814|
+|                                          |       |none  |     5|pct_stereotype |0.7667|±  |0.0448|
+| - crows_pairs_french_autre               |      1|none  |     5|likelihood_diff|4.3591|±  |0.5409|
+|                                          |       |none  |     5|pct_stereotype |0.6923|±  |0.1332|
+| - crows_pairs_french_disability          |      1|none  |     5|likelihood_diff|6.1197|±  |0.6517|
+|                                          |       |none  |     5|pct_stereotype |0.8030|±  |0.0493|
+| - crows_pairs_french_gender              |      1|none  |     5|likelihood_diff|2.9447|±  |0.1543|
+|                                          |       |none  |     5|pct_stereotype |0.6355|±  |0.0269|
+| - crows_pairs_french_nationality         |      1|none  |     5|likelihood_diff|3.9950|±  |0.2502|
+|                                          |       |none  |     5|pct_stereotype |0.5455|±  |0.0314|
+| - crows_pairs_french_physical_appearance |      1|none  |     5|likelihood_diff|4.0965|±  |0.4980|
+|                                          |       |none  |     5|pct_stereotype |0.6806|±  |0.0553|
+| - crows_pairs_french_race_color          |      1|none  |     5|likelihood_diff|3.6481|±  |0.1466|
+|                                          |       |none  |     5|pct_stereotype |0.6543|±  |0.0222|
+| - crows_pairs_french_religion            |      1|none  |     5|likelihood_diff|4.9863|±  |0.3535|
+|                                          |       |none  |     5|pct_stereotype |0.7913|±  |0.0381|
+| - crows_pairs_french_sexual_orientation  |      1|none  |     5|likelihood_diff|4.5665|±  |0.3665|
+|                                          |       |none  |     5|pct_stereotype |0.8462|±  |0.0380|
+| - crows_pairs_french_socioeconomic       |      1|none  |     5|likelihood_diff|4.9352|±  |0.2789|
+|                                          |       |none  |     5|pct_stereotype |0.7398|±  |0.0314|
+
+|     Groups     |Version|Filter|n-shot|    Metric     |Value |   |Stderr|
+|----------------|-------|------|-----:|---------------|-----:|---|-----:|
+|stem            |N/A    |none  |     5|acc            |0.4413|±  |0.0058|
+|                |       |none  |     5|acc_norm       |0.4010|±  |0.0066|
+|hendrycks_ethics|N/A    |none  |     5|acc            |0.6468|±  |0.0033|
+|crows_pairs     |N/A    |none  |     5|likelihood_diff|4.0976|±  |0.0452|
+|                |       |none  |     5|pct_stereotype |0.6944|±  |0.0056|
+
