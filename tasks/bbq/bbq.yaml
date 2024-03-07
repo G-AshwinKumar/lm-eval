@@ -1,0 +1,28 @@
+group:
+  - bias
+task: bbq
+dataset_path: oskarvanderwal/bbq
+dataset_name: All
+test_split: test
+output_type: multiple_choice
+process_docs: !function utils.process_docs
+doc_to_text: "{{context}}\nQuestion: {{question}}?\nAnswer:"
+doc_to_target: !function utils.doc_to_target
+doc_to_choice: !function utils.doc_to_choice
+process_results: !function utils.process_results
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_amb
+    aggregation: !function utils.acc_context
+    higher_is_better: true
+  - metric: acc_disamb
+    aggregation: !function utils.acc_context
+    higher_is_better: true
+  - metric: disamb_bias_score
+    aggregation: !function utils.agg_disamb_bias_score
+    higher_is_better: false
+  - metric: amb_bias_score
+    aggregation: !function utils.agg_amb_bias_score
+    higher_is_better: false
