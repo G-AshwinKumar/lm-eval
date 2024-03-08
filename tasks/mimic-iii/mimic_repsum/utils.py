@@ -2,6 +2,11 @@
 import sacrebleu
 from collections.abc import Iterable
 from rouge_score import rouge_scorer, scoring
+from radgraph import F1RadGraph
+import numpy as np
+
+import evaluate
+
 
 
 def doc_to_text(doc) -> str:
@@ -50,19 +55,37 @@ def _sacreformat(refs, preds):
 
 
 def process_results_gen(doc, results):
-    rouge_scores = rouge([doc["target_text"]], [results[0]])
+    pred, refs = [results[0]], [doc["target_text"]]
 
-    bleu_scores = bleu([doc["target_text"]], [results[0]])
+    rouge_scores = rouge_impl(refs, pred)
+    bleu_scores = bleu_impl(refs, pred)
+
+    f1radgraph = F1RadGraph(reward_level="all")
+    radgraph_score, _, _, _ = f1radgraph(hyps=pred, refs=refs)
+
+    bleu = evaluate.load("bleu")
+    rouge = evaluate.load("rouge")
+    bertscore = evaluate.load("bertscore")
+    # compute hugging face metrics
+    bleu_results = bleu.compute(predictions=pred, references=refs)
+    rouge_results = rouge.compute(predictions=pred, references=refs)
+    bert_results = bertscore.compute(predictions=pred, references=refs, lang="en")
 
     return {
         "bleu": bleu_scores,
         "rougeL": rouge_scores["rougeLsum"],
         "rouge1": rouge_scores["rouge1"],
         "rouge2": rouge_scores["rouge2"],
+        "BLEU": bleu_results["bleu"],
+        "ROUGE-1": rouge_results["rouge1"],
+        "ROUGE-2": rouge_results["rouge2"],
+        "ROUGE-L": rouge_results["rougeL"],
+        "BERT": np.mean(bert_results["f1"]),
+        "F1-Radgraph": radgraph_score,
     }
 
 
-def bleu(refs, preds):
+def bleu_impl(refs, preds):
     """
     Returns `t5` style BLEU scores. See the related implementation:
     https://github.com/google-research/text-to-text-transfer-transformer/blob/3d10afd51ba97ac29eb66ae701eca274488202f7/t5/evaluation/metrics.py#L41
@@ -93,7 +116,7 @@ def bleu(refs, preds):
     return score
 
 
-def rouge(refs, preds):
+def rouge_impl(refs, preds):
     """
     Returns `t5` style ROUGE scores. See the related implementation:
     https://github.com/google-research/text-to-text-transfer-transformer/blob/3d10afd51ba97ac29eb66ae701eca274488202f7/t5/evaluation/metrics.py#L68

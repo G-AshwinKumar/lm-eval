@@ -50,8 +50,23 @@ metric_list:
   - metric: bleu
     aggregation: mean
     higher_is_better: true
-  - metric: bert-F1
+  - metric: BLEU
+    aggregation: mean
+    higher_is_better: true
+  - metric: ROUGE-1
+    aggregation: mean
+    higher_is_better: true
+  - metric: ROUGE-2
+    aggregation: mean
+    higher_is_better: true
+  - metric: ROUGE-L
+    aggregation: mean
+    higher_is_better: true
+  - metric: BERT
+    aggregation: mean
+    higher_is_better: true
+  - metric: F1-Radgraph
     aggregation: mean
     higher_is_better: true
 metadata:
-  version: 1.0
+  - version: 1.0
