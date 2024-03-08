@@ -1,0 +1,63 @@
+BootStrap: docker
+From: nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
+# This is the official pytorch base image from pytorch team
+
+%post
+    export CUDA_HOME=/usr/local/cuda
+    apt update -y
+    apt install rsync -y
+    apt install -y software-properties-common
+    add-apt-repository ppa:deadsnakes/ppa -y
+    apt update -y
+    apt-get install -y git
+    apt install -y curl
+    apt install -y python3.10
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
+    apt install -y python3.10-venv python3.10-dev
+    apt install nvidia-cuda-toolkit -y
+    curl -Ss https://bootstrap.pypa.io/get-pip.py | python3.10
+    apt-get clean
+    rm -rf /var/lib/apt/lists/
+    	
+    pip3 install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
+    pip3 install pandas==2.2.0
+    pip3 install packaging==23.2
+    pip3 install gekko==1.0.6
+    pip3 install evaluate==0.4.1
+    pip3 install vaderSentiment==3.3.2
+    
+  	
+   mkdir -p "/home"
+   mkdir -p "/home/tasks"
+   
+   cd "/home"
+   git clone https://github.com/EleutherAI/lm-evaluation-harness
+   cd lm-evaluation-harness/
+   pip install --no-cache-dir -e ".[ifeval,multilingual,sentencepiece,vllm,zeno]"
+   pip3 uninstall vllm -y
+   pip3 uninstall xformers -y
+   # pip3 install --upgrade xformers --index-url https://download.pytorch.org/whl/cu118
+   pip3 install xformers==0.0.23 --index-url https://download.pytorch.org/whl/cu118
+   pip3 install https://github.com/vllm-project/vllm/releases/download/v0.3.2/vllm-0.3.2+cu118-cp310-cp310-manylinux1_x86_64.whl
+   pip3 install --upgrade bitsandbytes
+   pip3 install --upgrade transformers
+   cd ..
+   
+   git clone https://gitlab.hpai.bsc.es/heka/lm-evaluation-harness.git heka_lm_eval
+   
+   rsync -av --ignore-existing heka_lm_eval/tasks/ lm-evaluation-harness/lm_eval/tasks/
+   
+   pwd
+   pip freeze
+   which pip
+
+%environment
+# Set any environment variables if required
+
+%runscript
+# Add a runscript if needed
+
+%labels
+   Author Enrique Lopez
+   Institution Barcelona Supercomputing Center

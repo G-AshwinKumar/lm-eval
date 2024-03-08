@@ -19,6 +19,7 @@ temp
 # IPython
 profile_default/
 ipython_config.py
+setup.py
 **/__pycache__/
 # out
 slurm_output/
