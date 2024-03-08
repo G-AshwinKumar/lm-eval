@@ -60,7 +60,7 @@ def process_results_gen(doc, results):
     rouge_scores = rouge_impl(refs, pred)
     bleu_scores = bleu_impl(refs, pred)
 
-    f1radgraph = F1RadGraph(reward_level="all")
+    f1radgraph = F1RadGraph(reward_level="partial")
     radgraph_score, _, _, _ = f1radgraph(hyps=pred, refs=refs)
 
     bleu = evaluate.load("bleu")
