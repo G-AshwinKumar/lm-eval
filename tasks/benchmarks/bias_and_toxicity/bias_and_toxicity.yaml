@@ -1,5 +1,6 @@
 group: bias_and_toxicity
 task:
+  - winobias
   - winobias_stereotypical
   - winobias_anti_stereotypical
   - bold_american_actors
