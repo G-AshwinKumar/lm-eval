@@ -24,7 +24,7 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     CUDA_LAUNCH_BLOCKING=1 TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.7 \
-    --tasks mimic_repsum \
+    --tasks winobias,winobias_stereotypical,winobias_anti_stereotypical,mimic_repsum,bbq \
     --device cuda:0 \
     --batch_size auto:4 \
     --num_fewshot 0'
