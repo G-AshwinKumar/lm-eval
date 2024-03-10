@@ -61,7 +61,10 @@ def process_results_gen(doc, results):
     bleu_scores = bleu_impl(refs, pred)
 
     f1radgraph = F1RadGraph(reward_level="partial")
-    radgraph_score, _, _, _ = f1radgraph(hyps=pred, refs=refs)
+    try:
+        radgraph_score, _, _, _ = f1radgraph(hyps=pred, refs=refs)
+    except:
+        radgraph_score = 0.0
 
     bleu = evaluate.load("bleu")
     rouge = evaluate.load("rouge")
