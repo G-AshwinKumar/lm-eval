@@ -75,17 +75,17 @@ def process_results_gen(doc, results):
     try:
         bleu_results = bleu.compute(predictions=pred, references=refs)
     except:
-        bleu_results = 0.0
+        bleu_results = {"bleu": 0.0}
     
     try:
         rouge_results = rouge.compute(predictions=pred, references=refs)
     except:
-        rouge_results = 0.0
+        rouge_results = {"rouge1": 0.0, "rouge2": 0.0, "rougeL": 0.0}
 
     try:
         bert_results = bertscore.compute(predictions=pred, references=refs, lang="en")
     except:
-        bert_results = 0.0
+        bert_results = {"f1": 0.0}
 
     return {
         "bleu": bleu_scores,
