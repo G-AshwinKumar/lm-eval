@@ -11,7 +11,7 @@
 #SBATCH -t 06:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
-MODEL_NAME="Yi-9B"
+MODEL_NAME="MMedLM2"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 # use pwd
@@ -23,7 +23,7 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/user_caches/hf_cache_'${USER}'" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
-    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.7 \
+    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.6 \
     --tasks bias_and_toxicity \
-    --batch_size 32 \
+    --batch_size 8 \
     --num_fewshot 0'
