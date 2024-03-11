@@ -11,7 +11,7 @@
 #SBATCH -t 12:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node 
 
-MODEL_NAME="Yi-6B-Chat"
+MODEL_NAME="PMC_LLaMA_13B"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 # use pwd
@@ -26,6 +26,6 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=2,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.78 \
     --tasks crows_pairs,hendrycks_ethics,multimedqa,medqa,medqa5,medqa_template,medqa5_template,medmcqa_val,medmcqa_val_template \
     --device cuda \
-    --batch_size auto:4 \
+    --batch_size 32 \
     --num_fewshot 5'
 
