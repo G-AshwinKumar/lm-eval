@@ -11,7 +11,7 @@
 #SBATCH -t 12:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
-MODEL_NAME="Yi-9B"
+MODEL_NAME="MMedLM2"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 # use pwd
@@ -24,6 +24,6 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.7 \
-    --tasks multimedqa,mmlu,medqa,medqa5,medqa_template,medqa5_template,medmcqa,medmcqa_val,medmcqa_val_template \
-    --batch_size 32 \
+    --tasks bias_and_toxicity,multimedqa,mmlu,medqa,medqa5,medqa_template,medqa5_template,medmcqa,medmcqa_val,medmcqa_val_template \
+    --batch_size 16 \
     --num_fewshot 0'
