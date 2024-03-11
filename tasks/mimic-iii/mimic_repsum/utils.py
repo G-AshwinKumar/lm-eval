@@ -61,6 +61,7 @@ def process_results_gen(doc, results):
     bleu_scores = bleu_impl(refs, pred)
 
     f1radgraph = F1RadGraph(reward_level="partial")
+    
     try:
         radgraph_score, _, _, _ = f1radgraph(hyps=pred, refs=refs)
     except:
@@ -70,9 +71,21 @@ def process_results_gen(doc, results):
     rouge = evaluate.load("rouge")
     bertscore = evaluate.load("bertscore")
     # compute hugging face metrics
-    bleu_results = bleu.compute(predictions=pred, references=refs)
-    rouge_results = rouge.compute(predictions=pred, references=refs)
-    bert_results = bertscore.compute(predictions=pred, references=refs, lang="en")
+
+    try:
+        bleu_results = bleu.compute(predictions=pred, references=refs)
+    except:
+        bleu_results = 0.0
+    
+    try:
+        rouge_results = rouge.compute(predictions=pred, references=refs)
+    except:
+        rouge_results = 0.0
+
+    try:
+        bert_results = bertscore.compute(predictions=pred, references=refs, lang="en")
+    except:
+        bert_results = 0.0
 
     return {
         "bleu": bleu_scores,
