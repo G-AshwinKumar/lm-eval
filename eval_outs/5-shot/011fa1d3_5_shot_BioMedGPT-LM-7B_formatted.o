@@ -1,0 +1,81 @@
+|                  Tasks                   |    Metric     |Value  ± Stderr|
+|------------------------------------------|---------------|-----:--------:|
+|stem                                      |acc            |0.4413 ± 0.0058|
+|                                          |acc_norm       |0.4010 ± 0.0066|
+| - medmcqa                                |acc            |0.3956 ± 0.0076|
+|                                          |acc_norm       |0.3956 ± 0.0076|
+| - medqa_4options                         |acc            |0.4187 ± 0.0138|
+|                                          |acc_norm       |0.4187 ± 0.0138|
+| - anatomy (mmlu)                         |acc            |0.5185 ± 0.0432|
+| - clinical_knowledge (mmlu)              |acc            |0.5170 ± 0.0308|
+| - college_biology (mmlu)                 |acc            |0.5000 ± 0.0418|
+| - college_medicine (mmlu)                |acc            |0.4509 ± 0.0379|
+| - medical_genetics (mmlu)                |acc            |0.5000 ± 0.0503|
+| - professional_medicine (mmlu)           |acc            |0.4963 ± 0.0304|
+| - pubmedqa                               |acc            |0.7580 ± 0.0192|
+|medqa_template                            |acc            |0.4124 ± 0.0138|
+|medqa5_template                           |acc            |0.3606 ± 0.0135|
+|medqa5                                    |acc            |0.3606 ± 0.0135|
+|medqa                                     |acc            |0.4226 ± 0.0139|
+|medmcqa_val_template                      |acc            |0.3894 ± 0.0075|
+|medmcqa_val                               |acc            |0.3978 ± 0.0076|
+|hendrycks_ethics                          |acc            |0.6468 ± 0.0033|
+| - ethics_cm                              |acc            |0.6211 ± 0.0078|
+| - ethics_deontology                      |acc            |0.5768 ± 0.0082|
+| - ethics_justice                         |acc            |0.6557 ± 0.0091|
+| - ethics_utilitarianism                  |acc            |0.5395 ± 0.0072|
+| - ethics_virtue                          |acc            |0.8163 ± 0.0055|
+|crows_pairs                               |likelihood_diff|4.0976 ± 0.0452|
+|                                          |pct_stereotype |0.6944 ± 0.0056|
+| - crows_pairs_english                    |likelihood_diff|4.2634 ± 0.0945|
+|                                          |pct_stereotype |0.7335 ± 0.0108|
+| - crows_pairs_english_age                |likelihood_diff|4.6397 ± 0.4219|
+|                                          |pct_stereotype |0.7912 ± 0.0428|
+| - crows_pairs_english_autre              |likelihood_diff|7.8432 ± 2.9200|
+|                                          |pct_stereotype |0.8182 ± 0.1220|
+| - crows_pairs_english_disability         |likelihood_diff|7.6545 ± 0.6223|
+|                                          |pct_stereotype |0.8154 ± 0.0485|
+| - crows_pairs_english_gender             |likelihood_diff|3.0489 ± 0.1829|
+|                                          |pct_stereotype |0.6937 ± 0.0258|
+| - crows_pairs_english_nationality        |likelihood_diff|4.2171 ± 0.2441|
+|                                          |pct_stereotype |0.7130 ± 0.0309|
+| - crows_pairs_english_physical_appearance|likelihood_diff|4.4701 ± 0.4172|
+|                                          |pct_stereotype |0.7778 ± 0.0493|
+| - crows_pairs_english_race_color         |likelihood_diff|3.9573 ± 0.1578|
+|                                          |pct_stereotype |0.6988 ± 0.0204|
+| - crows_pairs_english_religion           |likelihood_diff|5.1174 ± 0.3754|
+|                                          |pct_stereotype |0.8378 ± 0.0351|
+| - crows_pairs_english_sexual_orientation |likelihood_diff|6.6391 ± 0.5186|
+|                                          |pct_stereotype |0.8925 ± 0.0323|
+| - crows_pairs_english_socioeconomic      |likelihood_diff|5.4520 ± 0.2545|
+|                                          |pct_stereotype |0.7947 ± 0.0294|
+| - crows_pairs_french                     |likelihood_diff|3.6836 ± 0.0881|
+|                                          |pct_stereotype |0.6225 ± 0.0118|
+| - crows_pairs_french_age                 |likelihood_diff|4.0871 ± 0.3814|
+|                                          |pct_stereotype |0.7667 ± 0.0448|
+| - crows_pairs_french_autre               |likelihood_diff|4.3591 ± 0.5409|
+|                                          |pct_stereotype |0.6923 ± 0.1332|
+| - crows_pairs_french_disability          |likelihood_diff|6.1197 ± 0.6517|
+|                                          |pct_stereotype |0.8030 ± 0.0493|
+| - crows_pairs_french_gender              |likelihood_diff|2.9447 ± 0.1543|
+|                                          |pct_stereotype |0.6355 ± 0.0269|
+| - crows_pairs_french_nationality         |likelihood_diff|3.9950 ± 0.2502|
+|                                          |pct_stereotype |0.5455 ± 0.0314|
+| - crows_pairs_french_physical_appearance |likelihood_diff|4.0965 ± 0.4980|
+|                                          |pct_stereotype |0.6806 ± 0.0553|
+| - crows_pairs_french_race_color          |likelihood_diff|3.6481 ± 0.1466|
+|                                          |pct_stereotype |0.6543 ± 0.0222|
+| - crows_pairs_french_religion            |likelihood_diff|4.9863 ± 0.3535|
+|                                          |pct_stereotype |0.7913 ± 0.0381|
+| - crows_pairs_french_sexual_orientation  |likelihood_diff|4.5665 ± 0.3665|
+|                                          |pct_stereotype |0.8462 ± 0.0380|
+| - crows_pairs_french_socioeconomic       |likelihood_diff|4.9352 ± 0.2789|
+|                                          |pct_stereotype |0.7398 ± 0.0314|
+|     Groups     |    Metric     |Value  ± Stderr|
+|----------------|---------------|-----: ± -----:|
+|stem            |acc            |0.4413 ± 0.0058|
+|                |acc_norm       |0.4010 ± 0.0066|
+|hendrycks_ethics|acc            |0.6468 ± 0.0033|
+|crows_pairs     |likelihood_diff|4.0976 ± 0.0452|
+|                |pct_stereotype |0.6944 ± 0.0056|
+| - medicine       |acc            |0.4965 ± 0.0368|

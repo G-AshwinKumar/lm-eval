@@ -1,12 +1,3 @@
-slurmstepd: info: Setting TMPDIR to /scratch/6043834. Previous errors about TMPDIR can be discarded
-Starting sbatch script at Fri Mar  1 06:36:49 AM CET 2024 for Nous-Hermes-2-SOLAR-10.7B
-Current directory: '/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/pipelines/lm-evaluation-harness/7b9492a5'
-INFO 03-01 06:38:08 llm_engine.py:72] Initializing an LLM engine with config: model='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/Nous-Hermes-2-SOLAR-10.7B', tokenizer='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/Nous-Hermes-2-SOLAR-10.7B', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, seed=1234)
-INFO 03-01 06:39:01 llm_engine.py:322] # GPU blocks: 2185, # CPU blocks: 1365
-INFO 03-01 06:39:03 model_runner.py:632] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
-INFO 03-01 06:39:03 model_runner.py:636] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
-INFO 03-01 06:39:09 model_runner.py:698] Graph capturing finished in 5 secs.
-vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/Nous-Hermes-2-SOLAR-10.7B,tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.7), gen_kwargs: (None), limit: None, num_fewshot: 0, batch_size: auto:4
 |                  Tasks                   |Version|Filter|n-shot|    Metric     | Value |   |Stderr|
 |------------------------------------------|-------|------|-----:|---------------|------:|---|------|
 |truthfulqa_mc2                            |      2|none  |     0|acc            | 0.5585|±  |0.0154|
@@ -24,6 +15,7 @@ vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/l
 |toxigen_generation_black                  |      0|none  |     0|toxicity       |12.0939|±  |1.0715|
 |toxigen_generation_asian                  |      0|none  |     0|toxicity       | 6.4051|±  |0.5170|
 |toxigen_generation                        |      0|none  |     0|toxicity       | 8.1216|±  |0.2424|
+|pubmedqa                                  |      1|none  |     0|acc            |0.7460|±  |0.0195|
 |mmlu                                      |N/A    |none  |     0|acc            | 0.6381|±  |0.0037|
 | - humanities                             |N/A    |none  |     0|acc            | 0.5656|±  |0.0064|
 |  - formal_logic                          |      0|none  |     0|acc            | 0.4683|±  |0.0446|
@@ -42,7 +34,7 @@ vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/l
 | - other                                  |N/A    |none  |     0|acc            | 0.7274|±  |0.0077|
 |  - business_ethics                       |      0|none  |     0|acc            | 0.6400|±  |0.0482|
 |  - clinical_knowledge                    |      0|none  |     0|acc            | 0.7057|±  |0.0280|
-|  - college_medicine                      |      0|none  |     0|acc            | 0.6647|±  |0.0360|
+|  - college_medicine                      |      0|none  |     0|acc            |0.6532|±  |0.0363|
 |  - global_facts                          |      0|none  |     0|acc            | 0.3200|±  |0.0469|
 |  - human_aging                           |      0|none  |     0|acc            | 0.7354|±  |0.0296|
 |  - management                            |      0|none  |     0|acc            | 0.8350|±  |0.0368|
@@ -51,7 +43,7 @@ vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/l
 |  - miscellaneous                         |      0|none  |     0|acc            | 0.8365|±  |0.0132|
 |  - nutrition                             |      0|none  |     0|acc            | 0.7614|±  |0.0244|
 |  - professional_accounting               |      0|none  |     0|acc            | 0.5248|±  |0.0298|
-|  - professional_medicine                 |      0|none  |     0|acc            | 0.7463|±  |0.0264|
+|  - professional_medicine                 |      0|none  |     0|acc            |0.7426|±  |0.0266|
 |  - virology                              |      0|none  |     0|acc            | 0.5361|±  |0.0388|
 | - social_sciences                        |N/A    |none  |     0|acc            | 0.7540|±  |0.0076|
 |  - econometrics                          |      0|none  |     0|acc            | 0.5526|±  |0.0468|
@@ -66,7 +58,7 @@ vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/l
 |  - security_studies                      |      0|none  |     0|acc            | 0.7633|±  |0.0272|
 |  - sociology                             |      0|none  |     0|acc            | 0.8259|±  |0.0268|
 |  - us_foreign_policy                     |      0|none  |     0|acc            | 0.8700|±  |0.0338|
-| - stem                                   |N/A    |none  |     0|acc            | 0.5452|±  |0.0085|
+| - stem                                   |N/A    |none  |     0|acc            |0.5583|±  |0.0058|
 |  - abstract_algebra                      |      0|none  |     0|acc            | 0.3700|±  |0.0485|
 |  - anatomy                               |      0|none  |     0|acc            | 0.5926|±  |0.0424|
 |  - astronomy                             |      0|none  |     0|acc            | 0.7500|±  |0.0352|
@@ -90,10 +82,12 @@ vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/l
 |medqa5_template                           |      1|none  |     0|acc            | 0.4784|±  |0.0140|
 |medqa5                                    |      1|none  |     0|acc            | 0.4933|±  |0.0140|
 |medqa                                     |      1|none  |     0|acc            | 0.5428|±  |0.0140|
+|medqa_4options                            |Yaml   |none  |     0|acc            |0.5593|±  |0.0139|
+|                                          |       |none  |     0|acc_norm       |0.5593|±  |0.0139|
 |medmcqa_val_template                      |      1|none  |     0|acc            | 0.4884|±  |0.0077|
 |medmcqa_val                               |      1|none  |     0|acc            | 0.5006|±  |0.0077|
-|medmcqa                                   |Yaml   |none  |     0|acc            | 0.4953|±  |0.0077|
-|                                          |       |none  |     0|acc_norm       | 0.4953|±  |0.0077|
+|medmcqa                                   |Yaml   |none  |     0|acc            |0.4968|±  |0.0077|
+|                                          |       |none  |     0|acc_norm       |0.4968|±  |0.0077|
 |hendrycks_ethics                          |N/A    |none  |     0|acc            | 0.7382|±  |0.0030|
 | - ethics_cm                              |      1|none  |     0|acc            | 0.7102|±  |0.0073|
 | - ethics_deontology                      |      1|none  |     0|acc            | 0.6051|±  |0.0082|
@@ -168,8 +162,7 @@ vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/l
 | - humanities     |N/A    |none  |     0|acc            |0.5656|±  |0.0064|
 | - other          |N/A    |none  |     0|acc            |0.7274|±  |0.0077|
 | - social_sciences|N/A    |none  |     0|acc            |0.7540|±  |0.0076|
-| - stem           |N/A    |none  |     0|acc            |0.5452|±  |0.0085|
+| - stem           |N/A    |none  |     0|acc            |0.5583|±  |0.0058|
 |hendrycks_ethics  |N/A    |none  |     0|acc            |0.7382|±  |0.0030|
 |crows_pairs       |N/A    |none  |     0|likelihood_diff|8.9896|±  |0.1852|
 |                  |       |none  |     0|pct_stereotype |0.5309|±  |0.0060|
-

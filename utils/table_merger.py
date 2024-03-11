@@ -15,14 +15,21 @@ def read_tables(file):
     # Read the entire file into a string
     with open(file, 'r') as f:
         content = f.read()
+
+    lines = content.split("\n")
+
+    header_pos = len(lines)
+    for i in range(1, len(lines)):
+        if "Value  ± Stderr" in lines[i]:
+            header_pos = i
     
-    # Split the content based on the second table's header
-    header = "|      Groups      |    Metric     |Value  ± Stderr|\n|------------------|---------------|-----: ± -----:|"
-    first_table, second_table = content.split(header)
+    first_table = "\n".join(lines[:header_pos])
+    if header_pos < len(lines):
+        second_table = "\n".join(lines[header_pos+2:])
     
     first_table = read_table(StringIO(first_table))
     if second_table:
-        second_table = read_table(StringIO(header + "\n" + second_table))
+        second_table = read_table(StringIO("|      Groups      |    Metric     |Value  ± Stderr|\n|------------------|---------------|-----: ± -----:|\n" + second_table))
 
     return first_table, second_table
 
@@ -78,7 +85,7 @@ for file in os.listdir(folder):
         # Get the file name without the extension
         filename = Path(file).stem
         parts = filename.split('_')
-        commit, shots, method = parts[0], parts[1], '_'.join(parts[2:])
+        commit, method = parts[0], '_'.join(parts[2:])
 
         print(f'Processing {filename}...')
 
@@ -92,10 +99,15 @@ for file in os.listdir(folder):
         task_dict = process_table(task_dict, first_table, method_column)
         group_dict = process_table(group_dict, second_table, method_column)
 
+output_name = os.path.basename(folder)
+
 task_table = table_to_md(task_dict)
 group_table = table_to_md(group_dict)
 
-with open(f'{shots}.md', 'w+') as file:
+task_table.to_csv(f'../eval_outs/{output_name}_tasks.csv', index=False)
+group_table.to_csv(f'../eval_outs/{output_name}_groups.csv', index=False)
+
+with open(f'../eval_outs/{output_name}.md', 'w+') as file:
     file.write(task_table.to_markdown(index=False).replace('nan', ''))
     file.write("\n")
     file.write(group_table.to_markdown(index=False).replace('nan', ''))
