@@ -1,0 +1,3 @@
+include: jigsaw_toxicity.yaml
+task: jigsaw_toxic_prompts
+process_docs: !function utils.filter_toxic
