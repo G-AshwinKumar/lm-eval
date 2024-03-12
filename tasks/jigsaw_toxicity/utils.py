@@ -2,16 +2,17 @@ import datasets
 from transformers import BertForSequenceClassification, BertTokenizer, TextClassificationPipeline
 
 
+model_path = "JiaqiLee/robust-bert-jigsaw"
+tokenizer = BertTokenizer.from_pretrained(model_path)
+model = BertForSequenceClassification.from_pretrained(model_path, num_labels=2)
+pipeline = TextClassificationPipeline(model=model, tokenizer=tokenizer)
+
+
 def doc_to_text(doc) -> str:
     return doc["comment_text"]
 
 
 def process_results(doc, results):
-    model_path = "JiaqiLee/robust-bert-jigsaw"
-    tokenizer = BertTokenizer.from_pretrained(model_path)
-    model = BertForSequenceClassification.from_pretrained(model_path, num_labels=2)
-    pipeline = TextClassificationPipeline(model=model, tokenizer=tokenizer)
-
     try:
         completion_out = pipeline(results[0])
         if completion_out[0]['label'] == 'toxic':
