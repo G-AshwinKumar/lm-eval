@@ -4,9 +4,13 @@ from collections.abc import Iterable
 from rouge_score import rouge_scorer, scoring
 from radgraph import F1RadGraph
 import numpy as np
-
 import evaluate
 
+
+bleu = evaluate.load("bleu")
+rouge = evaluate.load("rouge")
+bertscore = evaluate.load("bertscore")
+f1radgraph = F1RadGraph(reward_level="partial")
 
 
 def doc_to_text(doc) -> str:
@@ -59,18 +63,11 @@ def process_results_gen(doc, results):
 
     rouge_scores = rouge_impl(refs, pred)
     bleu_scores = bleu_impl(refs, pred)
-
-    f1radgraph = F1RadGraph(reward_level="partial")
     
     try:
         radgraph_score, _, _, _ = f1radgraph(hyps=pred, refs=refs)
     except:
         radgraph_score = 0.0
-
-    bleu = evaluate.load("bleu")
-    rouge = evaluate.load("rouge")
-    bertscore = evaluate.load("bertscore")
-    # compute hugging face metrics
 
     try:
         bleu_results = bleu.compute(predictions=pred, references=refs)
