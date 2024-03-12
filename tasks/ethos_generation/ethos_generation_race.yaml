@@ -1,4 +1,4 @@
-include: ethos_generation.yaml
+include: _ethos_generation.yaml
 task: ethos_generation_race
 dataset_name: multilabel
 process_docs: !function utils.filter_race

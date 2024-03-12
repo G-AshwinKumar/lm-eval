@@ -1,3 +1,0 @@
-include: ethos_generation.yaml
-task: ethos_generation_general
-dataset_name: binary
