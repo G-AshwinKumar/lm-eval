@@ -1,0 +1,4 @@
+include: ethos_generation.yaml
+task: ethos_generation_sexual_orientation
+dataset_name: multilabel
+process_docs: !function utils.filter_sexual_orientation

@@ -1,0 +1,4 @@
+include: ethos_generation.yaml
+task: ethos_generation_national_origin
+dataset_name: multilabel
+process_docs: !function utils.filter_national_origin

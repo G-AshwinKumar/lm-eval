@@ -1,0 +1,4 @@
+include: ethos_generation.yaml
+task: ethos_generation_gender
+dataset_name: multilabel
+process_docs: !function utils.filter_gender
