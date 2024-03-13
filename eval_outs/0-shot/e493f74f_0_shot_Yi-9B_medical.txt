@@ -1,0 +1,97 @@
+slurmstepd: info: Setting TMPDIR to /scratch/6248832. Previous errors about TMPDIR can be discarded
+Starting sbatch script at Tue Mar 12 05:42:59 PM CET 2024 for Yi-9B
+Current directory: '/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/pipelines/lm-evaluation-harness/e493f74f'
+INFO 03-12 17:45:03 llm_engine.py:79] Initializing an LLM engine with config: model='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/Yi-9B', tokenizer='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/Yi-9B', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, seed=1234)
+INFO 03-12 17:46:08 llm_engine.py:337] # GPU blocks: 5600, # CPU blocks: 2730
+INFO 03-12 17:46:12 model_runner.py:676] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 03-12 17:46:12 model_runner.py:680] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 03-12 17:46:21 model_runner.py:748] Graph capturing finished in 9 secs.
+vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/Yi-9B,tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.65), gen_kwargs: (None), limit: None, num_fewshot: 0, batch_size: 8
+|                 Tasks                 |Version|Filter|n-shot| Metric |Value |   |Stderr|
+|---------------------------------------|-------|------|-----:|--------|-----:|---|-----:|
+| - stem                                |N/A    |none  |     0|acc     |0.6359|±  |0.0082|
+| - abstract_algebra                    |      0|none  |     0|acc     |0.3700|±  |0.0485|
+| - anatomy                             |      0|none  |     0|acc     |0.6370|±  |0.0415|
+| - astronomy                           |      0|none  |     0|acc     |0.7434|±  |0.0355|
+| - college_biology                     |      0|none  |     0|acc     |0.8194|±  |0.0322|
+| - college_chemistry                   |      0|none  |     0|acc     |0.4800|±  |0.0502|
+| - college_computer_science            |      0|none  |     0|acc     |0.6500|±  |0.0479|
+| - college_mathematics                 |      0|none  |     0|acc     |0.4400|±  |0.0499|
+| - college_physics                     |      0|none  |     0|acc     |0.4706|±  |0.0497|
+| - computer_security                   |      0|none  |     0|acc     |0.8300|±  |0.0378|
+| - conceptual_physics                  |      0|none  |     0|acc     |0.7319|±  |0.0290|
+| - electrical_engineering              |      0|none  |     0|acc     |0.6966|±  |0.0383|
+| - elementary_mathematics              |      0|none  |     0|acc     |0.6085|±  |0.0251|
+| - high_school_biology                 |      0|none  |     0|acc     |0.8355|±  |0.0211|
+| - high_school_chemistry               |      0|none  |     0|acc     |0.5961|±  |0.0345|
+| - high_school_computer_science        |      0|none  |     0|acc     |0.8800|±  |0.0327|
+| - high_school_mathematics             |      0|none  |     0|acc     |0.4185|±  |0.0301|
+| - high_school_physics                 |      0|none  |     0|acc     |0.4570|±  |0.0407|
+| - high_school_statistics              |      0|none  |     0|acc     |0.6620|±  |0.0323|
+| - machine_learning                    |      0|none  |     0|acc     |0.5982|±  |0.0465|
+| - other                               |N/A    |none  |     0|acc     |0.7377|±  |0.0076|
+| - business_ethics                     |      0|none  |     0|acc     |0.7600|±  |0.0429|
+| - clinical_knowledge                  |      0|none  |     0|acc     |0.7283|±  |0.0274|
+| - college_medicine                    |      0|none  |     0|acc     |0.7225|±  |0.0341|
+| - global_facts                        |      0|none  |     0|acc     |0.4200|±  |0.0496|
+| - human_aging                         |      0|none  |     0|acc     |0.7444|±  |0.0293|
+| - management                          |      0|none  |     0|acc     |0.8155|±  |0.0384|
+| - marketing                           |      0|none  |     0|acc     |0.8932|±  |0.0202|
+| - medical_genetics                    |      0|none  |     0|acc     |0.8000|±  |0.0402|
+| - miscellaneous                       |      0|none  |     0|acc     |0.8442|±  |0.0130|
+| - nutrition                           |      0|none  |     0|acc     |0.7418|±  |0.0251|
+| - professional_accounting             |      0|none  |     0|acc     |0.5426|±  |0.0297|
+| - professional_medicine               |      0|none  |     0|acc     |0.7022|±  |0.0278|
+| - virology                            |      0|none  |     0|acc     |0.5120|±  |0.0389|
+|multimedqa                             |N/A    |none  |     0|acc     |0.5477|±  |0.0064|
+|                                       |       |none  |     0|acc_norm|0.5321|±  |0.0068|
+| - medmcqa                             |Yaml   |none  |     0|acc     |0.5302|±  |0.0077|
+|                                       |       |none  |     0|acc_norm|0.5302|±  |0.0077|
+| - medqa_4options                      |Yaml   |none  |     0|acc     |0.5381|±  |0.0140|
+|                                       |       |none  |     0|acc_norm|0.5381|±  |0.0140|
+| - pubmedqa                            |      1|none  |     0|acc     |0.7180|±  |0.0201|
+|mmlu                                   |N/A    |none  |     0|acc     |0.6773|±  |0.0049|
+| - humanities                          |N/A    |none  |     0|acc     |0.6091|±  |0.0066|
+|  - formal_logic                       |      0|none  |     0|acc     |0.5873|±  |0.0440|
+|  - high_school_european_history       |      0|none  |     0|acc     |0.8182|±  |0.0301|
+|  - high_school_us_history             |      0|none  |     0|acc     |0.8480|±  |0.0252|
+|  - high_school_world_history          |      0|none  |     0|acc     |0.7975|±  |0.0262|
+|  - international_law                  |      0|none  |     0|acc     |0.8017|±  |0.0364|
+|  - jurisprudence                      |      0|none  |     0|acc     |0.7870|±  |0.0396|
+|  - logical_fallacies                  |      0|none  |     0|acc     |0.8160|±  |0.0304|
+|  - moral_disputes                     |      0|none  |     0|acc     |0.7543|±  |0.0232|
+|  - moral_scenarios                    |      0|none  |     0|acc     |0.3363|±  |0.0158|
+|  - philosophy                         |      0|none  |     0|acc     |0.7685|±  |0.0240|
+|  - prehistory                         |      0|none  |     0|acc     |0.7809|±  |0.0230|
+|  - professional_law                   |      0|none  |     0|acc     |0.5124|±  |0.0128|
+|  - world_religions                    |      0|none  |     0|acc     |0.8187|±  |0.0295|
+| - social_sciences                     |N/A    |none  |     0|acc     |0.7816|±  |0.0073|
+|  - econometrics                       |      0|none  |     0|acc     |0.5175|±  |0.0470|
+|  - high_school_geography              |      0|none  |     0|acc     |0.8485|±  |0.0255|
+|  - high_school_government_and_politics|      0|none  |     0|acc     |0.9016|±  |0.0215|
+|  - high_school_macroeconomics         |      0|none  |     0|acc     |0.7436|±  |0.0221|
+|  - high_school_microeconomics         |      0|none  |     0|acc     |0.8403|±  |0.0238|
+|  - high_school_psychology             |      0|none  |     0|acc     |0.8679|±  |0.0145|
+|  - human_sexuality                    |      0|none  |     0|acc     |0.7710|±  |0.0369|
+|  - professional_psychology            |      0|none  |     0|acc     |0.7141|±  |0.0183|
+|  - public_relations                   |      0|none  |     0|acc     |0.6818|±  |0.0446|
+|  - security_studies                   |      0|none  |     0|acc     |0.6898|±  |0.0296|
+|  - sociology                          |      0|none  |     0|acc     |0.8557|±  |0.0248|
+|  - us_foreign_policy                  |      0|none  |     0|acc     |0.8700|±  |0.0338|
+|medqa_template                         |      1|none  |     0|acc     |0.4658|±  |0.0140|
+|medqa5_template                        |      1|none  |     0|acc     |0.3983|±  |0.0137|
+|medqa5                                 |      1|none  |     0|acc     |0.4046|±  |0.0138|
+|medqa                                  |      1|none  |     0|acc     |0.4894|±  |0.0140|
+|medmcqa_val_template                   |      1|none  |     0|acc     |0.4418|±  |0.0077|
+|medmcqa_val                            |      1|none  |     0|acc     |0.4533|±  |0.0077|
+
+|      Groups      |Version|Filter|n-shot| Metric |Value |   |Stderr|
+|------------------|-------|------|-----:|--------|-----:|---|-----:|
+|stem              |N/A    |none  |     0|acc     |0.6359|±  |0.0082|
+|other             |N/A    |none  |     0|acc     |0.7377|±  |0.0076|
+|multimedqa        |N/A    |none  |     0|acc     |0.5477|±  |0.0064|
+|                  |       |none  |     0|acc_norm|0.5321|±  |0.0068|
+|mmlu              |N/A    |none  |     0|acc     |0.6773|±  |0.0049|
+| - humanities     |N/A    |none  |     0|acc     |0.6091|±  |0.0066|
+| - social_sciences|N/A    |none  |     0|acc     |0.7816|±  |0.0073|
+
