@@ -38,20 +38,24 @@ class ToxDectRoBERTa(HateSpeechClassifier):
 def doc_to_text(doc) -> str:
     return "{}".format(doc["text"])
 
+
+# Instantiate Toxiciy Classifier
+classifier = ToxDectRoBERTa()
+
+
 def compute_toxicity_from_generation(prediction):
     """
     Score the toxicity of a generated sentence based on ToxiGen's pretrained toxicity classifier RoBERTa.
     Lower is better
     """
-
-    # Instantiate Toxiciy Classifier
-    classifier = ToxDectRoBERTa()
     prob = classifier.from_text(prediction[0])
     return prob
+
 
 def process_results(doc, results):
     toxicity = compute_toxicity_from_generation(results)
     return {'toxicity': toxicity}
+
 
 # Method to filter filtered annotated toxigen (json)
 def filter_dataset(dataset: datasets.Dataset, target_group: str) -> datasets.Dataset:
