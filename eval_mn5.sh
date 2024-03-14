@@ -1,0 +1,32 @@
+#!/bin/bash
+#------------------------------------------------------
+# Example SLURM job script with SBATCH requesting GPUs
+#------------------------------------------------------
+#SBATCH -J eval-mn5      # Job name
+#SBATCH -o slurm_output/out.txt       # Name of stdout output file(%j expands to jobId)
+#SBATCH -e slurm_output/err.txt       # Name of stderr output file(%j expands to jobId)
+#SBATCH --gres=gpu:a100:1   # Request 1 GPU of 2 available on an average A100 node
+#SBATCH -c 32               # Cores per task requested.
+#SBATCH -t 06:00:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH --account bsc70  
+#SBATCH --qos=gp_bsccs
+
+echo COMMIT_TAG=$COMMIT_TAG
+
+MODEL_NAME="mistral7b-full_v2_dpo_merged"
+echo "Starting sbatch script at `date` for $MODEL_NAME"
+MODEL_PATH="/gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/Models/$MODEL_NAME"
+# use pwd
+CURRENT_DIR=$(pwd)
+echo "Current directory: '$CURRENT_DIR'"
+
+module load singularity
+singularity exec --nv /gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/singularity/lm_eval_harness_vllm032_cuda118_research.sif \
+    bash -c 'export HF_DATASETS_CACHE="/gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/hf_caches/hf_cache_cns10888" && \
+    TORCH_USE_CUDA_DSA=1 python -m lm_eval \
+    --model vllm \
+    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.8 \
+    --tasks multimedqa \
+    --device cuda \
+    --batch_size auto:4 \
+    --num_fewshot 0'
