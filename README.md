@@ -8,7 +8,7 @@ This repo loads EleutherAI/lm-evaluation-harness for llm evaluation, together wi
 If this is the first time you are using this repo, you need to follow instructions in the following link to get access: https://gitlab.hpai.bsc.es/heka/heka_hub/-/wikis/MLOps-Heka
 
 
-## Usage
+## Usage - CESGA
 
 ### Prepare Script:
 
@@ -48,7 +48,7 @@ If you want to use only one gpu in the node, your script should look like this:
 git commit -m "LAUNCH_CESGA <sbatch your_script.sh> Whatever message."
 ```
 
-## Output
+### Output
 
 Output is saved in CESGA 
 
@@ -61,6 +61,12 @@ $SHARE/pipelines/lm-evaluation-harness/$COMMIT_TAG
 Follow the guide in lm-evaluation-harness: https://github.com/EleutherAI/lm-evaluation-harness/blob/main/docs/new_task_guide.md
 
 Then create a new task inside the /tasks folder of this repo. 
+
+In CESGA, the overlay function for singularity images is disabled, so you will need to build a new image that includes the task you just added. To do this, go to the folder where you cloned this repository and run:
+``` 
+sudo singularity build <image_name>.sif lm_eval_harness_final.def 
+```
+Then upload this to cesga and place it in $SHARE/Singularity.
 
 ## LLM-Evaluation
 
