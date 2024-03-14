@@ -7,7 +7,7 @@
 #SBATCH -e slurm_output/err.txt       # Name of stderr output file(%j expands to jobId)
 #SBATCH --gres=gpu:a100:1   # Request 1 GPU of 2 available on an average A100 node
 #SBATCH -c 32               # Cores per task requested.
-#SBATCH -t 06:00:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 00:10:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --account bsc70  
 #SBATCH --qos=gp_bsccs
 
