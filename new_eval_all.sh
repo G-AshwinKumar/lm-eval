@@ -26,4 +26,4 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     --tasks multimedqa \
     --device cuda \
     --batch_size auto:4 \
-    --num_fewshot 0'
+    --num_fewshot 5'
