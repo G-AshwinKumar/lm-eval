@@ -1,0 +1,104 @@
+|                   Tasks                   |    Metric     | Value  ± Stderr|
+|-------------------------------------------|---------------|------:---------|
+|bias_and_toxicity                          |acc            | 0.5429 ± 0.0034|
+|                                           |pct_stereotype | 0.6023 ± 0.0059|
+|                                           |bias_score     | 0.0076 ± 0.0018|
+|                                           |likelihood_diff| 3.6565 ± 0.0432|
+|                                           |toxicity       | 7.9675 ± 0.1639|
+|                                           |vaderSentiment | 0.0743 ± N/A   |
+| - bold                                    |vaderSentiment | 0.0833 ± 0.0034|
+| - bold_african_americans                  |vaderSentiment | 0.0688 ± 0.0111|
+| - bold_american_actors                    |vaderSentiment | 0.0405 ± 0.0055|
+| - bold_american_actresses                 |vaderSentiment | 0.0803 ± 0.0083|
+| - bold_asian_americans                    |vaderSentiment | 0.0872 ± 0.0121|
+| - bold_atheism                            |vaderSentiment |-0.0258 ± N/A   |
+| - bold_buddhism                           |vaderSentiment | 0.2461 ± 0.0783|
+| - bold_christianity                       |vaderSentiment | 0.1794 ± 0.1129|
+| - bold_european_americans                 |vaderSentiment | 0.0650 ± 0.0061|
+| - bold_hinduism                           |vaderSentiment | 0.0000 ±      0|
+| - bold_hispanic_and_latino_americans      |vaderSentiment | 0.0533 ± 0.0564|
+| - bold_islam                              |vaderSentiment |-0.0674 ± 0.1179|
+| - bold_judaism                            |vaderSentiment | 0.2167 ± 0.0826|
+| - bold_left_wing                          |vaderSentiment | 0.0273 ± 0.0572|
+| - bold_sikhism                            |vaderSentiment |-0.1406 ± 0.3684|
+| - crows_pairs                             |pct_stereotype | 0.6023 ± 0.0059|
+|                                           |likelihood_diff| 3.6565 ± 0.0432|
+|  - crows_pairs_english                    |likelihood_diff| 3.6848 ± 0.0879|
+|                                           |pct_stereotype | 0.6619 ± 0.0116|
+|  - crows_pairs_english_age                |likelihood_diff| 4.2480 ± 0.4163|
+|                                           |pct_stereotype | 0.6923 ± 0.0487|
+|  - crows_pairs_english_autre              |likelihood_diff| 5.7252 ± 1.8147|
+|                                           |pct_stereotype | 0.8182 ± 0.1220|
+|  - crows_pairs_english_disability         |likelihood_diff| 6.4958 ± 0.6951|
+|                                           |pct_stereotype | 0.7538 ± 0.0538|
+|  - crows_pairs_english_gender             |likelihood_diff| 2.7742 ± 0.1600|
+|                                           |pct_stereotype | 0.6781 ± 0.0262|
+|  - crows_pairs_english_nationality        |likelihood_diff| 3.5127 ± 0.2136|
+|                                           |pct_stereotype | 0.6019 ± 0.0334|
+|  - crows_pairs_english_physical_appearance|likelihood_diff| 4.1872 ± 0.3566|
+|                                           |pct_stereotype | 0.8194 ± 0.0456|
+|  - crows_pairs_english_race_color         |likelihood_diff| 3.4915 ± 0.1554|
+|                                           |pct_stereotype | 0.5827 ± 0.0219|
+|  - crows_pairs_english_religion           |likelihood_diff| 3.6276 ± 0.3469|
+|                                           |pct_stereotype | 0.7207 ± 0.0428|
+|  - crows_pairs_english_sexual_orientation |likelihood_diff| 4.3256 ± 0.4803|
+|                                           |pct_stereotype | 0.8065 ± 0.0412|
+|  - crows_pairs_english_socioeconomic      |likelihood_diff| 4.1109 ± 0.2315|
+|                                           |pct_stereotype | 0.6947 ± 0.0335|
+|  - crows_pairs_french                     |likelihood_diff| 3.6282 ± 0.0863|
+|                                           |pct_stereotype | 0.5426 ± 0.0122|
+|  - crows_pairs_french_age                 |likelihood_diff| 3.8040 ± 0.3823|
+|                                           |pct_stereotype | 0.5111 ± 0.0530|
+|  - crows_pairs_french_autre               |likelihood_diff| 3.0780 ± 0.7061|
+|                                           |pct_stereotype | 0.4615 ± 0.1439|
+|  - crows_pairs_french_disability          |likelihood_diff| 5.9288 ± 0.6173|
+|                                           |pct_stereotype | 0.6970 ± 0.0570|
+|  - crows_pairs_french_gender              |likelihood_diff| 3.0404 ± 0.1612|
+|                                           |pct_stereotype | 0.5639 ± 0.0277|
+|  - crows_pairs_french_nationality         |likelihood_diff| 3.8278 ± 0.2108|
+|                                           |pct_stereotype | 0.3755 ± 0.0305|
+|  - crows_pairs_french_physical_appearance |likelihood_diff| 3.7890 ± 0.4939|
+|                                           |pct_stereotype | 0.6111 ± 0.0579|
+|  - crows_pairs_french_race_color          |likelihood_diff| 3.0330 ± 0.1442|
+|                                           |pct_stereotype | 0.4674 ± 0.0233|
+|  - crows_pairs_french_religion            |likelihood_diff| 3.8770 ± 0.3633|
+|                                           |pct_stereotype | 0.6783 ± 0.0438|
+|  - crows_pairs_french_sexual_orientation  |likelihood_diff| 4.2636 ± 0.3220|
+|                                           |pct_stereotype | 0.7473 ± 0.0458|
+|  - crows_pairs_french_socioeconomic       |likelihood_diff| 4.4111 ± 0.3031|
+|                                           |pct_stereotype | 0.6684 ± 0.0337|
+| - hendrycks_ethics                        |acc            | 0.5477 ± 0.0035|
+|  - ethics_cm                              |acc            | 0.6190 ± 0.0078|
+|  - ethics_deontology                      |acc            | 0.5809 ± 0.0082|
+|  - ethics_justice                         |acc            | 0.5858 ± 0.0095|
+|  - ethics_utilitarianism                  |acc            | 0.5528 ± 0.0072|
+|  - ethics_virtue                          |acc            | 0.4424 ± 0.0070|
+| - toxigen_generation                      |toxicity       | 7.9513 ± 0.2411|
+| - toxigen_generation_asian                |toxicity       | 7.3202 ± 0.6098|
+| - toxigen_generation_black                |toxicity       |12.6412 ± 1.1114|
+| - toxigen_generation_chinese              |toxicity       | 7.2325 ± 0.9030|
+| - toxigen_generation_jewish               |toxicity       |12.3066 ± 1.1577|
+| - toxigen_generation_latino               |toxicity       | 7.2362 ± 0.6635|
+| - toxigen_generation_lgbtq                |toxicity       |10.4150 ± 1.0197|
+| - toxigen_generation_mental_dis           |toxicity       | 4.7574 ± 0.3105|
+| - toxigen_generation_mexican              |toxicity       | 6.5476 ± 0.8136|
+| - toxigen_generation_middle_east          |toxicity       | 9.7232 ± 1.1185|
+| - toxigen_generation_muslim               |toxicity       | 9.7803 ± 0.9889|
+| - toxigen_generation_native_american      |toxicity       | 6.1663 ± 0.6314|
+| - toxigen_generation_physical_dis         |toxicity       | 4.4329 ± 0.3719|
+| - toxigen_generation_women                |toxicity       | 6.2096 ± 0.5862|
+| - truthfulqa_mc2                          |acc            | 0.4248 ± 0.0147|
+| - winobias_anti_stereotypical             |bias_score     | 0.0076 ± 0.0031|
+| - winobias_stereotypical                  |bias_score     | 0.0076 ± 0.0022|
+|      Groups       |    Metric     |Value  ± Stderr|
+|-------------------|---------------|-----: ± ------|
+|bias_and_toxicity  |acc            |0.5429 ± 0.0034|
+|                   |pct_stereotype |0.6023 ± 0.0059|
+|                   |bias_score     |0.0076 ± 0.0018|
+|                   |likelihood_diff|3.6565 ± 0.0432|
+|                   |toxicity       |7.9675 ± 0.1639|
+|                   |vaderSentiment |0.0743 ± N/A   |
+| - crows_pairs     |pct_stereotype |0.6023 ± 0.0059|
+|                   |likelihood_diff|3.6565 ± 0.0432|
+| - hendrycks_ethics|acc            |0.5477 ± 0.0035|
+| - medicine       |acc            |0.0000 ± 0.0000|

@@ -107,6 +107,12 @@ group_table = table_to_md(group_dict)
 task_table.to_csv(f'../eval_outs/{output_name}_tasks.csv', index=False)
 group_table.to_csv(f'../eval_outs/{output_name}_groups.csv', index=False)
 
+task_table.set_index('Tasks').T.to_csv(f'../eval_outs/{output_name}_tasks_flipped.csv')
+group_table.set_index('Tasks').T.to_csv(f'../eval_outs/{output_name}_groups_flipped.csv')
+
+task_table.set_index('Tasks').T[["pubmedqa", "medqa", "medmcqa", "multimedqa"]].to_csv(f'../eval_outs/{output_name}_tasks_med.csv')
+task_table.set_index('Tasks').T[["stem", " - medmcqa", " - medqa_4options", " - anatomy (mmlu)", " - clinical_knowledge (mmlu)", " - college_biology (mmlu)", " - college_medicine (mmlu)", " - medical_genetics (mmlu)", " - professional_medicine (mmlu)", " - pubmedqa"]].to_csv(f'../eval_outs/{output_name}_tasks_table.csv')
+
 with open(f'../eval_outs/{output_name}.md', 'w+') as file:
     file.write(task_table.to_markdown(index=False).replace('nan', ''))
     file.write("\n")
