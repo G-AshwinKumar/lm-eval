@@ -61,8 +61,8 @@ def _sacreformat(refs, preds):
 def process_results_gen(doc, results):
     pred, refs = [results[0]], [doc["target_text"]]
 
-    rouge_scores = rouge_impl(refs, pred)
-    bleu_scores = bleu_impl(refs, pred)
+    #rouge_scores = rouge_impl(refs, pred)
+    #bleu_scores = bleu_impl(refs, pred)
     
     try:
         radgraph_score, _, _, _ = f1radgraph(hyps=pred, refs=refs)
@@ -85,10 +85,6 @@ def process_results_gen(doc, results):
         bert_results = {"f1": 0.0}
 
     return {
-        "bleu": bleu_scores,
-        "rougeL": rouge_scores["rougeLsum"],
-        "rouge1": rouge_scores["rouge1"],
-        "rouge2": rouge_scores["rouge2"],
         "BLEU": bleu_results["bleu"],
         "ROUGE-1": rouge_results["rouge1"],
         "ROUGE-2": rouge_results["rouge2"],
