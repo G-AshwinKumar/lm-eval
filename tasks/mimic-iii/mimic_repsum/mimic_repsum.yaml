@@ -1,5 +1,3 @@
-group:
-  - medical
 task: mimic_repsum
 dataset_path: dmacres/mimiciii-hospitalcourse-meta
 description: >
