@@ -7,7 +7,6 @@ training_split: train
 validation_split: train
 test_split: train
 doc_to_text: !function utils.doc_to_text
-doc_to_target: none
 process_results: !function utils.process_results_gen
 generation_kwargs:
   until:
