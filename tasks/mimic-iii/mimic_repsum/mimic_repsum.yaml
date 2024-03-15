@@ -34,7 +34,7 @@ doc_to_target: !function utils.doc_to_target
 process_results: !function utils.process_results_gen
 generation_kwargs:
   until:
-    - "\n"
+    - "\n\n"
 metric_list:
   - metric: BLEU
     aggregation: mean
