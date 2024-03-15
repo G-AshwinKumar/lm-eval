@@ -5,6 +5,7 @@
 #SBATCH -J eval-mn5      # Job name
 #SBATCH -o slurm_output/out.txt       # Name of stdout output file(%j expands to jobId)
 #SBATCH -e slurm_output/err.txt       # Name of stderr output file(%j expands to jobId)
+#SBATCH -n 1
 #SBATCH --gres=gpu:1 
 #SBATCH -c 32               # Cores per task requested
 #SBATCH -t 00:10:00         # Run time (hh:mm:ss) - 30 min
