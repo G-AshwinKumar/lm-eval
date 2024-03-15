@@ -18,7 +18,7 @@ MODEL_PATH="/gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/Models/$MODEL_
 CURRENT_DIR=$(pwd)
 echo "Current directory: '$CURRENT_DIR'"
 
-module load singularity/3.9.7
+module load singularity
 singularity exec --nv /gpfs/scratch/bsc70/hpai/storage/projects/heka/singularity/lm_eval_harness_vllm032_cuda118_research.sif \
     bash -c 'export HF_HUB_OFFLINE=1 && \
     export HF_DATASETS_CACHE="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache_cns10888" && \
