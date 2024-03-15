@@ -11,8 +11,6 @@
 #SBATCH --account bsc70  
 #SBATCH --qos=gp_bsccs
 
-echo COMMIT_TAG=$COMMIT_TAG
-
 MODEL_NAME="mistral7b-full_v2_dpo_merged"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/Models/$MODEL_NAME"
@@ -21,8 +19,9 @@ CURRENT_DIR=$(pwd)
 echo "Current directory: '$CURRENT_DIR'"
 
 module load singularity
-singularity exec --nv /gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/singularity/lm_eval_harness_vllm032_cuda118_research.sif \
-    bash -c 'export HF_DATASETS_CACHE="/gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/hf_caches/hf_cache_cns10888" && \
+singularity exec --nv /gpfs/scratch/bsc70/hpai/storage/projects/heka/singularity/lm_eval_harness_vllm032_cuda118_research.sif \
+    bash -c 'export HF_DATASETS_CACHE="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache_cns10888" && \
+    export HF_HOME="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_data" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.8 \
