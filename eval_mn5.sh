@@ -27,7 +27,7 @@ singularity exec --nv /gpfs/scratch/bsc70/hpai/storage/projects/heka/singularity
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.8 \
-    --tasks medqa_4options,mmlu_anatomy,mmlu_clinical_knowledge,mmlu_college_medicine,mmlu_medical_genetics,mmlu_professional_medicine,mmlu_college_biology \
+    --tasks mmlu_anatomy \
     --device cuda \
     --batch_size auto:4 \
     --num_fewshot 0'
