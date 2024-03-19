@@ -10,7 +10,7 @@
 #SBATCH -c 32               # Cores per task requested
 #SBATCH -t 00:10:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --account bsc70  
-#SBATCH --qos=gp_bsccs
+#SBATCH --qos=acc_bsccs
 
 MODEL_NAME="mistral7b-full_v2_dpo_merged"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
