@@ -20,14 +20,14 @@ CURRENT_DIR=$(pwd)
 echo "Current directory: '$CURRENT_DIR'"
 
 module load singularity
-singularity exec --nv /gpfs/scratch/bsc70/hpai/storage/projects/heka/singularity/lm_eval_harness_vllm032_cuda118_research.sif \
+singularity exec --overlay /gpfs/projects/bsc70/pipelines/lm-evaluation-harness/$COMMIT_TAG/tasks:/home/lm-evaluation-harness/lm_eval/tasks --nv /gpfs/scratch/bsc70/hpai/storage/projects/heka/singularity/lm_eval_harness_vllm032_cuda118_research.sif \
     bash -c 'export HF_HUB_OFFLINE=1 && \
     export HF_DATASETS_CACHE="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache_cns10888" && \
     export HF_HOME="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_data" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.8 \
-    --tasks mmlu_anatomy \
+    --tasks mir2023_en \
     --device cuda \
     --batch_size auto:4 \
     --num_fewshot 0'
