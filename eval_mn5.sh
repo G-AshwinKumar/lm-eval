@@ -8,11 +8,11 @@
 #SBATCH -n 1
 #SBATCH --gres=gpu:1 
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 00:10:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 00:20:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --account bsc70  
 #SBATCH --qos=acc_bsccs
 
-MODEL_NAME="mistral7b-full_v2_dpo_merged"
+MODEL_NAME="mistral7b-full_v6_med"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/Models/$MODEL_NAME"
 # use pwd
@@ -20,13 +20,15 @@ CURRENT_DIR=$(pwd)
 echo "Current directory: '$CURRENT_DIR'"
 
 module load singularity
-singularity exec --nv /gpfs/scratch/bsc70/hpai/storage/projects/heka/singularity/lm_eval_harness042_vllm032_cuda118_mn5.sif \
-    bash -c 'export HF_DATASETS_CACHE="/gpfs/projects/bsc70/heka/repos/tmp_eval_harness/hf_cache" && \
-    export HF_HOME="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_data" && \
-    TORCH_USE_CUDA_DSA=1 python -m lm_eval \
+singularity exec -B /gpfs/projects/bsc70/heka \
+                 -B /gpfs/projects/bsc70/heka/repos/tmp_eval_harness/vllm_fix/utils.py:/usr/local/lib/python3.10/dist-packages/vllm/utils.py \
+                 -B /gpfs/projects/bsc70/heka/repos/tmp_eval_harness/lm-evaluation-harness/lm_eval/api/task.py:/home/lm-evaluation-harness/lm_eval/api/task.py \
+                 -B /gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/Models \
+                 --nv /gpfs/projects/bsc70/heka/singularity/lm_eval_harness_c7b03ad_121_033_fix.sif \
+   bash -c 'export HF_HOME=/gpfs/projects/bsc70/heka/repos/tmp_eval_harness/hf_cache && export HF_DATASETS_CACHE="/gpfs/projects/bsc70/heka/repos/tmp_eval_harness/hf_cache" && \
+    python /home/lm-evaluation-harness/lm_eval \
     --model vllm \
-    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.8 \
-    --tasks mir2023_en \
-    --device cuda \
+    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,dtype=bfloat16,gpu_memory_utilization=0.8,data_parallel_size=1,max_model_len=8192 \
+    --tasks multimedqa \
     --batch_size auto:4 \
     --num_fewshot 0'
