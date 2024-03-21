@@ -25,7 +25,7 @@ singularity exec -B /gpfs/projects/bsc70/heka \
                  -B /gpfs/projects/bsc70/heka/repos/tmp_eval_harness/lm-evaluation-harness/lm_eval/api/task.py:/home/lm-evaluation-harness/lm_eval/api/task.py \
                  -B /gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/Models \
                  -B /gpfs/projects/bsc70/heka/repos/tmp_eval_harness/lm-evaluation-harness/lm_eval/toxigen_generation:/home/lm-evaluation-harness/lm_eval/tasks/toxigen_generation \
-                 --nv /gpfs/projects/bsc70/heka/singularity/lm_eval_harness_c7b03ad_121_033_fix.sif \
+                 --nv /gpfs/scratch/bsc70/hpai/storage/projects/heka/singularity/lm_eval_harness042_vllm032_cuda118_mn5.sif \
    bash -c 'export HF_HOME=/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache && export HF_DATASETS_CACHE="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache" && \
     python /home/lm-evaluation-harness/lm_eval \
     --model vllm \
