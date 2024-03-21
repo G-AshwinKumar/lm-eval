@@ -26,10 +26,10 @@ singularity exec -B /gpfs/projects/bsc70/heka \
                  -B /gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/Models \
                  -B /gpfs/projects/bsc70/heka/repos/tmp_eval_harness/lm-evaluation-harness/lm_eval/toxigen_generation:/home/lm-evaluation-harness/lm_eval/tasks/toxigen_generation \
                  --nv /gpfs/projects/bsc70/heka/singularity/lm_eval_harness_c7b03ad_121_033_fix.sif \
-   bash -c 'export HF_HOME=/gpfs/projects/bsc70/heka/repos/tmp_eval_harness/hf_cache && export HF_DATASETS_CACHE="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache" && \
+   bash -c 'export HF_HOME=/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache && export HF_DATASETS_CACHE="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache" && \
     python /home/lm-evaluation-harness/lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,dtype=bfloat16,gpu_memory_utilization=0.8,data_parallel_size=1,max_model_len=8192 \
-    --tasks bold \
+    --tasks toxigen_generation \
     --batch_size auto:4 \
     --num_fewshot 0'
