@@ -1,7 +1,7 @@
-group: mir2023
-task: MIR_es
+group: mir
+task: MIR_en
 dataset_path: lurcelay/mir2023
-dataset_name: MIR_es
+dataset_name: MIR_en
 training_split: train
 test_split: train
 
