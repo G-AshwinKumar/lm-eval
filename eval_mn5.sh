@@ -22,7 +22,7 @@ echo "Current directory: '$CURRENT_DIR'"
 module load singularity
 singularity exec --nv /gpfs/scratch/bsc70/hpai/storage/projects/heka/singularity/lm_eval_harness042_vllm032_cuda118_mn5.sif \
     bash -c 'export HF_HUB_OFFLINE=1 && \
-    export HF_DATASETS_CACHE="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache_cns10888" && \
+    export HF_DATASETS_CACHE="/gpfs/projects/bsc70/heka/repos/tmp_eval_harness/hf_cache" && \
     export HF_HOME="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_data" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
