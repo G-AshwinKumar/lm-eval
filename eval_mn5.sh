@@ -30,6 +30,6 @@ singularity exec -B /gpfs/projects/bsc70/heka \
     python /home/lm-evaluation-harness/lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,dtype=bfloat16,gpu_memory_utilization=0.8,data_parallel_size=1,max_model_len=8192 \
-    --tasks toxigen_generation \
+    --tasks bold \
     --batch_size auto:4 \
     --num_fewshot 0'
