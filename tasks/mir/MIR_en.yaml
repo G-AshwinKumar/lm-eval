@@ -1,0 +1,17 @@
+group: mir
+task: MIR_en
+dataset_path: lurcelay/mir2023
+dataset_name: MIR_en
+training_split: train
+test_split: train
+
+output_type: multiple_choice
+doc_to_text: !function utils.doc_to_text
+doc_to_target: !function utils.doc_to_target
+doc_to_choice: ['A', 'B', 'C', 'D']
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: True
+metadata:
+  version: 0.0
