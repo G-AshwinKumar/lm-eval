@@ -24,7 +24,7 @@ singularity exec -B /gpfs/projects/bsc70/heka \
                  -B /gpfs/projects/bsc70/heka/repos/tmp_eval_harness/vllm_fix/utils.py:/usr/local/lib/python3.10/dist-packages/vllm/utils.py \
                  -B /gpfs/projects/bsc70/heka/repos/tmp_eval_harness/lm-evaluation-harness/lm_eval/api/task.py:/home/lm-evaluation-harness/lm_eval/api/task.py \
                  -B /gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/Models \
-                 -B /gpfs/projects/bsc70/heka/repos/tmp_eval_harness/lm-evaluation-harness/lm_eval/toxigen_generation/toxigen_generation.yaml:/home/lm-evaluation-harness/lm_eval/tasks/toxigen_generation/toxigen_generation.yaml \
+                 -B /gpfs/projects/bsc70/heka/repos/tmp_eval_harness/lm-evaluation-harness/lm_eval/toxigen_generation:/home/lm-evaluation-harness/lm_eval/tasks/toxigen_generation \
                  --nv /gpfs/projects/bsc70/heka/singularity/lm_eval_harness_c7b03ad_121_033_fix.sif \
    bash -c 'export HF_HOME=/gpfs/projects/bsc70/heka/repos/tmp_eval_harness/hf_cache && export HF_DATASETS_CACHE="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache" && \
     python /home/lm-evaluation-harness/lm_eval \
