@@ -23,7 +23,7 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/user_caches/hf_cache_'${USER}'" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
-    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.85 \
+    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.75 \
     --tasks bias_and_toxicity,bbq,bbq_age,bbq_disability,bbq_gender,bbq_nationality,bbq_physical_appearance,bbq_race_ethnicity,bbq_race_x_gender,bbq_race_x_ses,bbq_religion,bbq_ses,bbq_sexual_orientation,jigsaw_toxicity,jigsaw_toxic_prompts,sycophancy_on_nlp_survey,sycophancy_on_philpapers2020,sycophancy_on_political_typology_quiz,ethos_generation_all,ethos_generation_disability,ethos_generation_gender,ethos_generation_national_origin,ethos_generation_race,ethos_generation_sexual_orientation \
     --device cuda \
     --batch_size auto:4 \
