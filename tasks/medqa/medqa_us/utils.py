@@ -14,7 +14,7 @@ def process_docs(dataset: datasets.Dataset):
 
 def doc_to_text(doc) -> str:
     return "Question: {}\nOptions: {}\nAnswer:".format(
-        doc["question"], doc["choices"], doc["answer"][0]
+        doc["question"], doc["choices"]
     )
 
 def doc_to_choice(doc) -> str:
