@@ -23,7 +23,7 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=bfloat16,gpu_memory_utilization=0.65 \
-    --tasks sycophancy_on_nlp_survey,sycophancy_on_philpapers2020,sycophancy_on_political_typology_quiz,ethos_generation_gender,ethos_generation_national_origin,ethos_generation_race,ethos_generation_sexual_orientation \
+    --tasks ethos_generation_religion,ethos_generation_disability,ethos_generation_all \
     --device cuda \
     --batch_size auto:4 \
     --num_fewshot 0'
