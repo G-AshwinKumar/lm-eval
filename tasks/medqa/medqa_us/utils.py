@@ -13,8 +13,8 @@ def process_docs(dataset: datasets.Dataset):
     return dataset.map(_helper) # returns back a datasets.Dataset object
 
 def doc_to_text(doc) -> str:
-    return "Question: {}\nChoices: {}\nAnswer:".format(
-        doc["question"], doc["choices"], doc["answer"][0]
+    return "Question: {}\nOptions: {}\nAnswer:".format(
+        doc["question"], doc["choices"]
     )
 
 def doc_to_choice(doc) -> str:
