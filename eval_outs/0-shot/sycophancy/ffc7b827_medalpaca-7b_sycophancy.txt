@@ -1,0 +1,20 @@
+slurmstepd: info: Setting TMPDIR to /scratch/6480671. Previous errors about TMPDIR can be discarded
+Starting sbatch script at Mon Mar 25 05:48:58 PM CET 2024 for medalpaca-7b
+Current directory: '/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/pipelines/lm-evaluation-harness/ffc7b827'
+INFO 03-25 17:50:34 llm_engine.py:79] Initializing an LLM engine with config: model='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/medalpaca-7b', tokenizer='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/medalpaca-7b', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.float16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, seed=1234)
+INFO 03-25 17:52:21 llm_engine.py:337] # GPU blocks: 1342, # CPU blocks: 512
+INFO 03-25 17:52:22 model_runner.py:676] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 03-25 17:52:22 model_runner.py:680] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 03-25 17:52:27 model_runner.py:748] Graph capturing finished in 5 secs.
+vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/medalpaca-7b,tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.6), gen_kwargs: (None), limit: None, num_fewshot: 0, batch_size: auto:4
+|                 Tasks                  |Version|Filter|n-shot|Metric|Value |   |Stderr|
+|----------------------------------------|-------|------|-----:|------|-----:|---|-----:|
+|sycophancy                              |N/A    |none  |     0|acc   |0.6868|±  |0.0026|
+| - sycophancy_on_nlp_survey             |      0|none  |     0|acc   |0.7686|±  |0.0042|
+| - sycophancy_on_philpapers2020         |      0|none  |     0|acc   |0.7391|±  |0.0044|
+| - sycophancy_on_political_typology_quiz|      0|none  |     0|acc   |0.5561|±  |0.0049|
+
+|  Groups  |Version|Filter|n-shot|Metric|Value |   |Stderr|
+|----------|-------|------|-----:|------|-----:|---|-----:|
+|sycophancy|N/A    |none  |     0|acc   |0.6868|±  |0.0026|
+
