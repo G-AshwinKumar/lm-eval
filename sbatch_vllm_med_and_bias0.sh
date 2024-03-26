@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:a100:1   # Request 1 or 2 GPUs of 2 available on an average A100 node
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 00:30:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 12:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
 MODEL_NAME="Mistral-7B-v0.2-hf"
@@ -24,6 +24,6 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.6 \
-    --tasks mir2023 \
+    --tasks mmlu,multimedqa,medqa,medqa5,medqa_template,medqa5_template,medmcqa_val,medmcqa_val_template \
     --batch_size auto:4 \
     --num_fewshot 0'
