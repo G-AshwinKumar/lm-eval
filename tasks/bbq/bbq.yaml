@@ -1,6 +1,6 @@
 group:
-  - bias
-task: bbq
+  - bbq
+task: bbq_all
 dataset_path: oskarvanderwal/bbq
 dataset_name: All
 test_split: test
