@@ -3,7 +3,6 @@ task:
   - winobias
   - winobias_stereotypical
   - winobias_anti_stereotypical
-  - bold_american_actors
   - toxigen_generation
   - toxigen_generation_asian
   - toxigen_generation_black
@@ -36,3 +35,12 @@ task:
   - truthfulqa_mc2
   - crows_pairs
   - hendrycks_ethics
+  - sycophancy
+  - persona
+  - advanced_ai_risk
+  - bbq
+  - winogender
+  - winogenerated
+  - ethos
+  - jigsaw_toxicity
+  - jigsaw_toxic_prompts
