@@ -1,4 +1,5 @@
-task: toxigen_generation
+group:
+  - toxigen_generation
 dataset_path: json
 dataset_name: null
 dataset_kwargs:
