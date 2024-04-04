@@ -11,7 +11,7 @@
 #SBATCH -t 00:15:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
-MODEL_NAME="MMedLM2"
+MODEL_NAME="SOLAR-10.7B-Instruct-v1.0"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 # use pwd
