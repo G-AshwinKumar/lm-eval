@@ -31,6 +31,6 @@ singularity exec -B /gpfs/projects/bsc70/heka \
     python /home/lm-evaluation-harness/lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,dtype=bfloat16,gpu_memory_utilization=0.8,data_parallel_size=1,max_model_len=8192 \
-    --tasks winobias,winobias_stereotypical,winobias_anti_stereotypical,toxigen_generation,toxigen_generation_asian,toxigen_generation_black,toxigen_generation_chinese,toxigen_generation_jewish,toxigen_generation_latino,toxigen_generation_lgbtq,toxigen_generation_middle_east,toxigen_generation_mental_dis,toxigen_generation_mexican,toxigen_generation_muslim,toxigen_generation_native_american,toxigen_generation_physical_dis,toxigen_generation_women,bold,truthfulqa_mc2,crows_pairs,hendrycks_ethics,sycophancy,advanced_ai_risk,bbq,winogender,winogenerated,ethos,jigsaw_toxicity,jigsaw_toxic_prompts \
+    --tasks bias_and_toxicity \
     --batch_size auto:4 \
     --num_fewshot 0'
