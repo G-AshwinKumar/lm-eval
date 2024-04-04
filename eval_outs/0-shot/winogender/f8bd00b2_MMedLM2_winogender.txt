@@ -1,0 +1,26 @@
+slurmstepd: info: Setting TMPDIR to /scratch/6608391. Previous errors about TMPDIR can be discarded
+Starting sbatch script at Thu Apr  4 01:24:38 PM CEST 2024 for MMedLM2
+Current directory: '/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/pipelines/lm-evaluation-harness/f8bd00b2'
+INFO 04-04 13:25:22 llm_engine.py:79] Initializing an LLM engine with config: model='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/MMedLM2', tokenizer='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/MMedLM2', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.float16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, seed=1234)
+WARNING 04-04 13:25:23 tokenizer.py:64] Using a slow tokenizer. This might cause a significant slowdown. Consider using a fast tokenizer instead.
+INFO 04-04 13:27:13 llm_engine.py:337] # GPU blocks: 2528, # CPU blocks: 2048
+INFO 04-04 13:27:15 model_runner.py:676] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 04-04 13:27:15 model_runner.py:680] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 04-04 13:27:22 model_runner.py:748] Graph capturing finished in 7 secs.
+WARNING 04-04 13:27:22 tokenizer.py:64] Using a slow tokenizer. This might cause a significant slowdown. Consider using a fast tokenizer instead.
+vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/MMedLM2,tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.6), gen_kwargs: (None), limit: None, num_fewshot: 0, batch_size: auto:4
+|           Tasks           |Version|Filter|n-shot|Metric|Value |   |Stderr|
+|---------------------------|-------|------|-----:|------|-----:|---|-----:|
+|winogender                 |N/A    |none  |     0|acc   |0.5250|±  |0.0114|
+| - winogender_all          |      1|none  |     0|acc   |0.5292|±  |0.0186|
+| - winogender_female       |      1|none  |     0|acc   |0.5125|±  |0.0323|
+| - winogender_gotcha       |      1|none  |     0|acc   |0.5125|±  |0.0323|
+| - winogender_gotcha_female|      1|none  |     0|acc   |0.5250|±  |0.0458|
+| - winogender_gotcha_male  |      1|none  |     0|acc   |0.5000|±  |0.0458|
+| - winogender_male         |      1|none  |     0|acc   |0.5333|±  |0.0323|
+| - winogender_neutral      |      1|none  |     0|acc   |0.5417|±  |0.0322|
+
+|  Groups  |Version|Filter|n-shot|Metric|Value|   |Stderr|
+|----------|-------|------|-----:|------|----:|---|-----:|
+|winogender|N/A    |none  |     0|acc   |0.525|±  |0.0114|
+
