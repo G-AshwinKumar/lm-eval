@@ -1,0 +1,85 @@
+slurmstepd: info: Setting TMPDIR to /scratch/6592750. Previous errors about TMPDIR can be discarded
+Starting sbatch script at Wed Apr  3 07:00:18 PM CEST 2024 for Nous-Hermes-2-SOLAR-10.7B
+Current directory: '/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/pipelines/lm-evaluation-harness/8fc53d71'
+INFO 04-03 19:01:30 llm_engine.py:79] Initializing an LLM engine with config: model='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/Nous-Hermes-2-SOLAR-10.7B', tokenizer='/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/Nous-Hermes-2-SOLAR-10.7B', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, seed=1234)
+INFO 04-03 19:02:22 llm_engine.py:337] # GPU blocks: 983, # CPU blocks: 1365
+INFO 04-03 19:02:24 model_runner.py:676] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 04-03 19:02:24 model_runner.py:680] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 04-03 19:02:31 model_runner.py:748] Graph capturing finished in 7 secs.
+vllm (pretrained=/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/Nous-Hermes-2-SOLAR-10.7B,tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.6), gen_kwargs: (None), limit: None, num_fewshot: 0, batch_size: auto:4
+|          Tasks           |Version|Filter|n-shot|     Metric      | Value |   |Stderr|
+|--------------------------|-------|------|-----:|-----------------|------:|---|------|
+|bbq                       |N/A    |none  |     0|acc_amb          | 0.0568|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.8468|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.8977|±  |N/A   |
+|                          |       |none  |     0|acc              | 0.4841|±  |0.0015|
+|                          |       |none  |     0|acc_disamb       | 0.9115|±  |N/A   |
+| - bbq_age                |Yaml   |none  |     0|acc              | 0.4587|±  |0.0082|
+|                          |       |none  |     0|acc_amb          | 0.0005|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.9168|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.8332|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.8337|±  |N/A   |
+| - bbq_all                |Yaml   |none  |     0|acc              | 0.4841|±  |0.0021|
+|                          |       |none  |     0|acc_amb          | 0.0568|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.9114|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.8467|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.8977|±  |N/A   |
+| - bbq_disability         |Yaml   |none  |     0|acc              | 0.3856|±  |0.0123|
+|                          |       |none  |     0|acc_amb          | 0.0090|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.7622|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.5256|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.5303|±  |N/A   |
+| - bbq_gender             |Yaml   |none  |     0|acc              | 0.4811|±  |0.0066|
+|                          |       |none  |     0|acc_amb          | 0.0000|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.9623|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.9245|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.9245|±  |N/A   |
+| - bbq_nationality        |Yaml   |none  |     0|acc              | 0.4870|±  |0.0090|
+|                          |       |none  |     0|acc_amb          | 0.0312|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.9429|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.8629|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.8906|±  |N/A   |
+| - bbq_physical_appearance|Yaml   |none  |     0|acc              | 0.4391|±  |0.0125|
+|                          |       |none  |     0|acc_amb          | 0.0685|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.8096|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.6449|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.6923|±  |N/A   |
+| - bbq_race_ethnicity     |Yaml   |none  |     0|acc              | 0.4949|±  |0.0060|
+|                          |       |none  |     0|acc_amb          | 0.0026|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.9872|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.9719|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.9744|±  |N/A   |
+| - bbq_race_x_gender      |Yaml   |none  |     0|acc              | 0.4794|±  |0.0040|
+|                          |       |none  |     0|acc_amb          | 0.0006|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.9581|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.9157|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.9163|±  |N/A   |
+| - bbq_race_x_ses         |Yaml   |none  |     0|acc              | 0.5150|±  |0.0047|
+|                          |       |none  |     0|acc_amb          | 0.2656|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.7643|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.6633|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.9032|±  |N/A   |
+| - bbq_religion           |Yaml   |none  |     0|acc              | 0.4817|±  |0.0144|
+|                          |       |none  |     0|acc_amb          | 0.0617|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.9017|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.7942|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.8464|±  |N/A   |
+| - bbq_ses                |Yaml   |none  |     0|acc              | 0.4841|±  |0.0060|
+|                          |       |none  |     0|acc_amb          | 0.0035|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.9647|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.9262|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.9295|±  |N/A   |
+| - bbq_sexual_orientation |Yaml   |none  |     0|acc              | 0.4688|±  |0.0170|
+|                          |       |none  |     0|acc_amb          | 0.0139|±  |N/A   |
+|                          |       |none  |     0|acc_disamb       | 0.9236|±  |N/A   |
+|                          |       |none  |     0|amb_bias_score   |-0.8355|±  |N/A   |
+|                          |       |none  |     0|disamb_bias_score|-0.8472|±  |N/A   |
+
+|Groups|Version|Filter|n-shot|     Metric      | Value |   |Stderr|
+|------|-------|------|-----:|-----------------|------:|---|------|
+|bbq   |N/A    |none  |     0|acc_amb          | 0.0568|±  |N/A   |
+|      |       |none  |     0|amb_bias_score   |-0.8468|±  |N/A   |
+|      |       |none  |     0|disamb_bias_score|-0.8977|±  |N/A   |
+|      |       |none  |     0|acc              | 0.4841|±  |0.0015|
+|      |       |none  |     0|acc_disamb       | 0.9115|±  |N/A   |
+
