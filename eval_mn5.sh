@@ -9,7 +9,7 @@
 #SBATCH --gres=gpu:1 
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 02:30:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 00:30:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --account bsc70  
 #SBATCH --qos=acc_bsccs
 
@@ -32,7 +32,7 @@ singularity exec -B /gpfs/projects/bsc70/heka \
     python /home/lm-evaluation-harness/lm_eval \
     --model vllm \
     --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,dtype=bfloat16,gpu_memory_utilization=0.9,data_parallel_size=1,max_model_len=8192 \
-    --tasks multimedqa \
+    --tasks mir2023_en \
     --batch_size auto:4 \
     --num_fewshot 0 \
     --output_path '${CURRENT_DIR}' \
