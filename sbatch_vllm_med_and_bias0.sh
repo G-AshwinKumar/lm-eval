@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:a100:1   # Request 1 or 2 GPUs of 2 available on an average A100 node
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 01:00:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 01:03:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
 MODEL_NAME="MMedLM2"
