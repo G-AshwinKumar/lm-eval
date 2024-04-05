@@ -7,12 +7,13 @@
 #SBATCH -e slurm_output/err.txt       # Name of stderr output file(%j expands to jobId)
 #SBATCH -n 1
 #SBATCH --gres=gpu:1 
+#SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 05:00:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 06:00:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --account bsc70  
 #SBATCH --qos=acc_bsccs
 
-MODEL_NAME="mistral7b-full_v6_med"
+MODEL_NAME="Liberated-Qwen1.5-14B"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/gpfs/tapes/MN4/projects/bsc70/hpai/storage/data/heka/Models/$MODEL_NAME"
 # use pwd
@@ -30,7 +31,7 @@ singularity exec -B /gpfs/projects/bsc70/heka \
    bash -c 'export HF_HUB_OFFLINE=1 && export HF_HOME=/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache2 && export HF_DATASETS_CACHE="/gpfs/scratch/bsc70/hpai/storage/projects/heka/hf_caches/hf_cache2" && \
     python /home/lm-evaluation-harness/lm_eval \
     --model vllm \
-    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,dtype=bfloat16,gpu_memory_utilization=0.8,data_parallel_size=1,max_model_len=8192 \
-    --tasks bias_and_toxicity \
+    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,dtype=bfloat16,gpu_memory_utilization=0.85,data_parallel_size=1,max_model_len=8192 \
+    --tasks winobias,winobias_stereotypical,winobias_anti_stereotypical,toxigen_generation,toxigen_generation_asian,toxigen_generation_black,toxigen_generation_chinese,toxigen_generation_jewish,toxigen_generation_latino,toxigen_generation_lgbtq,toxigen_generation_middle_east,toxigen_generation_mental_dis,toxigen_generation_mexican,toxigen_generation_muslim,toxigen_generation_native_american,toxigen_generation_physical_dis,toxigen_generation_women,bold,truthfulqa_mc2,crows_pairs,hendrycks_ethics,sycophancy,advanced_ai_risk,bbq,winogender,winogenerated,ethos \
     --batch_size auto:4 \
     --num_fewshot 0'
