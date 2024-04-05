@@ -1,4 +1,5 @@
-task: winobias
+group:
+  - winobias
 dataset_path: Elfsong/Wino_Bias
 output_type: loglikelihood
 training_split: train
