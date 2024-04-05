@@ -35,5 +35,5 @@ singularity exec -B /gpfs/projects/bsc70/heka \
     --tasks multimedqa \
     --batch_size auto:4 \
     --num_fewshot 0 \
-    --output_path ${CURRENT_DIR}/${COMMIT_TAG}.txt \
+    --output_path "${CURRENT_DIR}" \
     --log_samples'
