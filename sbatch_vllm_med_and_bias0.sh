@@ -8,10 +8,10 @@
 #SBATCH --gres=gpu:a100:1   # Request 1 or 2 GPUs of 2 available on an average A100 node
 #SBATCH --exclusive         # No other jobs allowed in our gpu
 #SBATCH -c 32               # Cores per task requested
-#SBATCH -t 01:03:00         # Run time (hh:mm:ss) - 30 min
+#SBATCH -t 00:45:00         # Run time (hh:mm:ss) - 30 min
 #SBATCH --mem=247G          # Memory per node
 
-MODEL_NAME="Yi-6B-Chat"
+MODEL_NAME="MMedLM2"
 echo "Starting sbatch script at `date` for $MODEL_NAME"
 MODEL_PATH="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Models_Trained/llm/$MODEL_NAME"
 # use pwd
@@ -23,7 +23,7 @@ singularity exec -B /mnt --nv /mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/Sin
     bash -c 'export HF_DATASETS_CACHE="/mnt/lustre/scratch/nlsas/home/res/cns10/SHARE/user_caches/hf_cache_'${USER}'" && \
     TORCH_USE_CUDA_DSA=1 python -m lm_eval \
     --model vllm \
-    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.6 \
-    --tasks jigsaw_toxicity,jigsaw_toxic_prompts \
+    --model_args pretrained='${MODEL_PATH}',tensor_parallel_size=1,trust_remote_code=True,dtype=auto,gpu_memory_utilization=0.8 \
+    --tasks sycophancy \
     --batch_size auto:4 \
     --num_fewshot 0'
